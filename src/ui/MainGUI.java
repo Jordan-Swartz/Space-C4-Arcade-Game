@@ -1,6 +1,8 @@
 package ui;
 
+import core.GameLogic;
 import interfaces.C4Constants;
+import static interfaces.C4Constants.*;
 import javafx.application.Application;
 import javafx.geometry.*;
 import javafx.stage.*;
@@ -21,6 +23,10 @@ public class MainGUI extends Application implements C4Constants{
 
     @Override
     public void start(Stage stage) {
+        
+        GameLogic logic = new GameLogic();
+        ConsoleUI console = new ConsoleUI(logic);
+
         HBox box = new HBox(10);
         box.setAlignment(Pos.CENTER);
 
@@ -37,6 +43,10 @@ public class MainGUI extends Application implements C4Constants{
         box.getChildren().addAll(btn1, btn2);
         stage.setScene(new Scene(box, 500, 500));
         stage.show();
+
+
+        //test
+        console.displayBoard();
     }
 
 }

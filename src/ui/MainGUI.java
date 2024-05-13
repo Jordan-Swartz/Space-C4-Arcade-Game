@@ -6,6 +6,7 @@ import static interfaces.C4Constants.*;
 import javafx.application.Application;
 import javafx.geometry.*;
 import javafx.stage.*;
+import test.Test;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -26,6 +27,7 @@ public class MainGUI extends Application implements C4Constants{
         
         GameLogic logic = new GameLogic();
         ConsoleUI console = new ConsoleUI(logic);
+        Test test = new Test(console, logic);
 
         HBox box = new HBox(10);
         box.setAlignment(Pos.CENTER);
@@ -46,7 +48,7 @@ public class MainGUI extends Application implements C4Constants{
 
 
         //test
-        console.displayBoard();
+        test.runTest();
     }
 
 }

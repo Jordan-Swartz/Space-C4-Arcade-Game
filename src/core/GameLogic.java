@@ -1,5 +1,12 @@
 package core;
 
+/**
+ * GameLogic defines and implements the methods for the core logic of the game.
+ * 
+ * @author Jordan Swartz
+ * @version 1.0
+ */
+
 import static interfaces.C4Constants.*;
 import interfaces.*;
 import java.util.Random;
@@ -11,6 +18,7 @@ public class GameLogic implements GameLogicInterface{
     private Scanner scnr;
     private char[][] board;
     private int currentPlayer;
+    private char currentToken;
     private int turn;
 
 
@@ -19,13 +27,24 @@ public class GameLogic implements GameLogicInterface{
         this.scnr = new Scanner(System.in);
         this.board = createBoard();
         this.currentPlayer = 1;
+        this.currentToken = PLAYER1_TOKEN;
         this.turn = 0;
     }
 
+    /**
+     * Accessor method that returns the current game board instance
+     * 
+     * @return 2D array of chars: board
+     */
     public char[][] getBoard() {
         return board;
     }
 
+    /**
+     * Creates a new game board and populates it with the default value '_'
+     * 
+     * @return new 2D array of chars: board
+     */
     public char[][] createBoard() {
         char[][] board = new char[ROWS][COLUMNS];
 
@@ -38,20 +57,41 @@ public class GameLogic implements GameLogicInterface{
         return board;
     }
 
+    /**
+     * Handles alternation between player turns
+     */
     public void manageTurns() {
         if (turn % 2 == 0) {
             //even player
-           currentPlayer = 1;
+           currentPlayer = PLAYER1;
+           currentToken = PLAYER1_TOKEN;
         } else {
             //odd player
-            currentPlayer = 2;
+            currentPlayer = PLAYER2;
+            currentToken = PLAYER2_TOKEN;
         }
     }
 
+    /**
+     * Increments turn variable
+     */
     public void incrementTurn() {
         turn++;
     }
 
+    /**
+     * InputType: COLUMN_INPUT
+     * Collect and return user column input
+     * 
+     * @param type
+     * @return column num 
+     * 
+     * InputType: START_INPUT
+     * Collect player choice 'P' or 'C' to determine game mode
+     * 
+     * @param type
+     * @return opponent num
+     */
     public int getInput(int type) {
         int input = -1;
         boolean valid = false;
@@ -94,5 +134,31 @@ public class GameLogic implements GameLogicInterface{
         return input;
     }
 
+    /**
+     * Finds the first avaliable row for the given column
+     * Returns -1 if no row is found
+     * 
+     * @param col
+     * @return row index or -1
+     */
+    public int findRow(int col) {
+        for (int i = 0; i < ROWS; i++) {
+            if (board[i][col] == '_') {
+                return i;
+            }
+        }
+        return -1;
+    }
     
+    /**
+     * Updates board location with currentToken
+     * 
+     * @param row
+     * @param col
+     */
+    public void applyMove(int row, int col) {
+        board[row][col] = currentToken;
+    }
+
+    //dynamic checking for wins
 } 

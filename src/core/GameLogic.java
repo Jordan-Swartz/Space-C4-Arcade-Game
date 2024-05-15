@@ -12,7 +12,6 @@ import interfaces.*;
 import java.util.Random;
 import java.util.Scanner;
 
-
 public class GameLogic implements GameLogicInterface{
     private Random random;
     private Scanner scnr;

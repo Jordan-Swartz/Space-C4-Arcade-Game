@@ -1,6 +1,6 @@
 package ui;
 
-import core.GameLogic;
+import core.*;
 import interfaces.C4Constants;
 import static interfaces.C4Constants.*;
 import javafx.application.Application;
@@ -25,7 +25,8 @@ public class MainGUI extends Application implements C4Constants{
     @Override
     public void start(Stage stage) {
         
-        GameLogic logic = new GameLogic();
+        TokenCounter tokenCounter = new TokenCounter();
+        GameLogic logic = new GameLogic(tokenCounter);
         ConsoleUI console = new ConsoleUI(logic);
         Test test = new Test(console, logic);
 

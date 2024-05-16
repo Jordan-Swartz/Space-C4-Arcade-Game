@@ -15,13 +15,15 @@ import java.util.Scanner;
 public class GameLogic implements GameLogicInterface{
     private Random random;
     private Scanner scnr;
+    private TokenCounter tokenCounter;
     private char[][] board;
     private int currentPlayer;
     private char currentToken;
     private int turn;
 
 
-    public GameLogic() {
+    public GameLogic(TokenCounter tokenCounter) {
+        this.tokenCounter = tokenCounter;
         this.random = new Random();
         this.scnr = new Scanner(System.in);
         this.board = createBoard();
@@ -146,6 +148,7 @@ public class GameLogic implements GameLogicInterface{
                 return i;
             }
         }
+
         return -1;
     }
     
@@ -160,4 +163,9 @@ public class GameLogic implements GameLogicInterface{
     }
 
     //dynamic checking for wins
+
+    //use tokenCounter to 
+
+    TokenInfo tokenInfo = tokenCounter.getTokenInfo(0, 0, HORIZONTAL);
+    TokenInfo[] row = tokenCounter.getHorizontalRow(0);
 } 

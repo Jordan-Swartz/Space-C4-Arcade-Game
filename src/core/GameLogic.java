@@ -8,13 +8,12 @@ package core;
  */
 
 import static interfaces.C4Constants.*;
-import interfaces.*;
 import java.util.Random;
 import java.util.Scanner;
 import core.TokenCounter.*;
 import dto.TokenData;
 
-public class GameLogic implements GameLogicInterface {
+public class GameLogic {
     private Random random;
     private Scanner scnr;
     private TokenCounter tokenCounter;

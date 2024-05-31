@@ -11,8 +11,10 @@ import static interfaces.C4Constants.*;
 import interfaces.*;
 import java.util.Random;
 import java.util.Scanner;
+import core.TokenCounter.*;
+import dto.TokenData;
 
-public class GameLogic implements GameLogicInterface{
+public class GameLogic implements GameLogicInterface {
     private Random random;
     private Scanner scnr;
     private TokenCounter tokenCounter;
@@ -33,7 +35,7 @@ public class GameLogic implements GameLogicInterface{
     }
 
     /**
-     * Accessor method that returns the current game board instance
+     * Accessor method that returns the current game board instance.
      * 
      * @return 2D array of chars: board
      */
@@ -42,7 +44,7 @@ public class GameLogic implements GameLogicInterface{
     }
 
     /**
-     * Creates a new game board and populates it with the default value '_'
+     * Creates a new game board and populates it with the default value '_'.
      * 
      * @return new 2D array of chars: board
      */
@@ -59,7 +61,7 @@ public class GameLogic implements GameLogicInterface{
     }
 
     /**
-     * Handles alternation between player turns
+     * Handles alternation between player turns.
      */
     public void manageTurns() {
         if (turn % 2 == 0) {
@@ -74,7 +76,7 @@ public class GameLogic implements GameLogicInterface{
     }
 
     /**
-     * Increments turn variable
+     * Increments turn variable.
      */
     public void incrementTurn() {
         turn++;
@@ -82,13 +84,13 @@ public class GameLogic implements GameLogicInterface{
 
     /**
      * InputType: COLUMN_INPUT
-     * Collect and return user column input
+     * Collect and return user column input.
      * 
      * @param type
      * @return column num 
      * 
      * InputType: START_INPUT
-     * Collect player choice 'P' or 'C' to determine game mode
+     * Collect player choice 'P' or 'C' to determine game mode.
      * 
      * @param type
      * @return opponent num
@@ -136,8 +138,8 @@ public class GameLogic implements GameLogicInterface{
     }
 
     /**
-     * Finds the first avaliable row for the given column
-     * Returns -1 if no row is found
+     * Finds the first avaliable row for the given column.
+     * Returns -1 if no row is found.
      * 
      * @param col
      * @return row index or -1
@@ -153,19 +155,60 @@ public class GameLogic implements GameLogicInterface{
     }
     
     /**
-     * Updates board location with currentToken
+     * Updates board location with currentToken.
      * 
      * @param row
      * @param col
      */
     public void applyMove(int row, int col) {
         board[row][col] = currentToken;
+        //
     }
+
 
     //dynamic checking for wins
 
-    //use tokenCounter to 
 
-    TokenInfo tokenInfo = tokenCounter.getTokenInfo(0, 0, HORIZONTAL);
-    TokenInfo[] row = tokenCounter.getHorizontalRow(0);
+    /**
+     * 
+     * @param row
+     * @param col
+     */
+    public void checkHorizontalWin(int row, int col) {
+        //add last placed token to HZ matrix and update current tokenInfo state
+        tokenCounter.updateTokenInfo(row, col, Direction.HORIZONTAL, 1, currentToken);
+
+        //grab row from HZ matrix
+        TokenData[] rowArray =  tokenCounter.getHorizontalRow(row);
+
+        //search left/update counts 
+        for (int i = col-1; i >= 0; i--) {
+            //later maybe add check for distinguishing whos token
+            if (rowArray[i].getToken() != currentToken) {
+                break;
+            } else {
+                tokenCounter.updateTokenInfo(row, col, Direction.HORIZONTAL, rowArray[i].getCount() + 1, currentToken);
+            }
+        }
+
+        //REWORK WITH PRIVATE TOKENINFO
+    }   
+
+
+
+
+    //use tokenCounter to 
+    // public void test() {
+    //     TokenInfo tokenInfo = tokenCounter.getTokenInfo(0, 0, Direction.HORIZONTAL);
+    //     TokenInfo[] row = tokenCounter.getHorizontalRow(0);
+    //     TokenInfo[] column = tokenCounter.getVerticalCol(0);
+
+    //     int count = tokenInfo.getCount();
+    //     char token = tokenInfo.getToken();
+        
+    //     tokenInfo.setCount(0);  //if tokenInfo already contains a token not empty
+    //     tokenCounter.updateTokenInfo(0, 0, Direction.HORIZONTAL, 0, 'X'); //if tokenInfo token is empty
+
+    // }
+
 } 

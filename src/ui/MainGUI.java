@@ -3,6 +3,8 @@ package ui;
 import core.*;
 import interfaces.C4Constants;
 import static interfaces.C4Constants.*;
+import ai.*;
+
 import javafx.application.Application;
 import javafx.geometry.*;
 import javafx.stage.*;
@@ -27,6 +29,7 @@ public class MainGUI extends Application implements C4Constants{
         
         TokenCounter tokenCounter = new TokenCounter();
         GameLogic logic = new GameLogic(tokenCounter);
+        ComputerLogic computer = new ComputerLogic(logic);
         ConsoleUI console = new ConsoleUI(logic);
         Test test = new Test(console, logic);
 

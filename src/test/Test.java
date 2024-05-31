@@ -19,7 +19,10 @@ public class Test {
         for (int i = 0; i < 100; i++) {
             int col = logic.getInput(2);
             int row = logic.findRow(col);
-            logic.applyMove(row, col);       
+            logic.applyMove(row, col);   
+            
+            //test
+            logic.checkHorizontalWin(row, col);
             
             logic.incrementTurn();
             logic.manageTurns();

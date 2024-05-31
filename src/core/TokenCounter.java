@@ -9,19 +9,20 @@ package core;
  */
 
 import static interfaces.C4Constants.*;
+import dto.TokenData;
 
 public class TokenCounter {
 
     /**
-     * TokenInfo contains the object info for each matrix index
+     * TokenInfo contains the private object info for each matrix index.
      * 
      * @author Jordan Swartz
      * @version 1.0
      */
 
     private class TokenInfo {
-        int count;
-        char token;
+        private int count;
+        private char token;
 
         public TokenInfo() {
             this.count = 0;
@@ -34,6 +35,14 @@ public class TokenCounter {
 
         public void setCount(int count) {
             this.count = count;
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+        public char getToken() {
+            return token;
         }
 
     }
@@ -70,41 +79,53 @@ public class TokenCounter {
         DIAGONAL_RTL,
     }
 
-
-    //methods to retireve data from matricies
-
     /**
+     * Returns isolated row array from horizontal matrix.
      * 
      * @param row
-     * @return
+     * @return TokenData[] row
      */
-    public TokenInfo[] getHorizontalRow(int row) {
-        return horizontalCounts[row];
-    }
+    public TokenData[] getHorizontalRow(int row) {
+        TokenData[] rowData = new TokenData[COLUMNS];
 
-    /**
-     * 
-     * @param col
-     * @return
-     */
-    public TokenInfo[] getVerticalCol(int col) {
-        TokenInfo[] column = new TokenInfo[ROWS];
-
-        for (int i = 0; i < ROWS; i++) {
-            column[i] = verticalCounts[i][col];
+        for (int i = 0; i < COLUMNS; i++) {
+            rowData[i] = new TokenData(horizontalCounts[row][i].getCount(), 
+                                       horizontalCounts[row][i].getToken());
         }
 
-        return column;
+        return rowData;
     }
 
     /**
+     * Returns isolated column array from vertical matrix.
+     * 
+     * @param col
+     * @return TokenData[] column
+     */
+    public TokenData[] getVerticalCol(int col) {
+       TokenData[] colData = new TokenData[ROWS];
+
+       for (int i = 0; i < ROWS; i++) {
+            colData[i] = new TokenData(verticalCounts[i][col].getCount(),
+                                       verticalCounts[i][col].getToken());
+       }
+
+       return colData;
+    }
+
+
+    //add other GETTERS
+
+
+    /**
+     * Private helper for updateTokenInfo that returns the correct TokenInfo Object.
      * 
      * @param row
      * @param col
      * @param direction
-     * @return
+     * @return TokenInfo object
      */
-    public TokenInfo getTokenInfo(int row, int col, Direction direction) {
+    private TokenInfo getTokenInfo(int row, int col, Direction direction) {
         switch (direction) {
             case HORIZONTAL:
                 return horizontalCounts[row][col];
@@ -119,22 +140,20 @@ public class TokenCounter {
         }
     }
 
+    /**
+     * Updates TokenInfo Values within the specified matrix.
+     * 
+     * @param row
+     * @param col
+     * @param direction
+     * @param count
+     * @param token
+     */
     public void updateTokenInfo(int row, int col, Direction direction, int count, char token) {
         TokenInfo tokenInfo = getTokenInfo(row, col, direction);
         tokenInfo.setCount(count);
         tokenInfo.setToken(token);
     }
 
-    ///// class access gamelogic -> tokencounter -> TokenInfo
-    // redo tokenInfo and update methods so that the tokenCounter class is doing the actual 
-    //updating. So in game logic it would be:
-    // int tokenCount = tokenCounter.getTokenCount()
-    //char tokenType = tokenCounter.getTokenType()
-
-    //NOTE: MIGHT NOT NEED THE GET ROW, GET COL if you are modifying the data from tokenCOunter class
-    // for (
-    //  maybe do checking in TokenCOunter class
-    //
-    //
 
 }

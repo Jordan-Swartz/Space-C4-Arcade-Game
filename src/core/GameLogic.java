@@ -172,25 +172,39 @@ public class GameLogic {
      * 
      * @param row
      * @param col
+     * @return true if hz win found
      */
-    public void checkHorizontalWin(int row, int col) {
-        //add last placed token to HZ matrix and update current tokenInfo state
-        tokenCounter.updateTokenInfo(row, col, Direction.HORIZONTAL, 1, currentToken);
-
+    public boolean checkHorizontalWin(int row, int col) {
         //grab row from HZ matrix
         TokenData[] rowArray =  tokenCounter.getHorizontalRow(row);
+        int count = 1;
 
         //search left/update counts 
         for (int i = col-1; i >= 0; i--) {
             //later maybe add check for distinguishing whos token
-            if (rowArray[i].getToken() != currentToken) {
-                break;
+            if (rowArray[i].getToken() == currentToken) {
+                count++;
             } else {
-                tokenCounter.updateTokenInfo(row, col, Direction.HORIZONTAL, rowArray[i].getCount() + 1, currentToken);
+                break;
             }
         }
 
-        //REWORK WITH PRIVATE TOKENINFO
+        //search right/update counts
+        for (int i = col+1; i <= 6; i++) {
+            if (rowArray[i].getToken() == currentToken) {
+                count++;
+            } else {
+                break;
+            }
+        }
+
+        //check for win count
+        tokenCounter.updateTokenInfo(row, col, Direction.HORIZONTAL, count, currentToken);
+        if (rowArray[col].getCount() >= 4) {
+            return true;
+        } else {
+            return false;
+        }
     }   
 
 

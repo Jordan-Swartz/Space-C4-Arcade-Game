@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
 
+        //Main Entry to Program
         {
             "type": "java",
             "name": "MainGUI",
@@ -12,12 +13,27 @@
             "mainClass": "ui.MainGUI",
             "vmArgs": "--module-path /home/jordan/Downloads/openjfx-22_linux-x64_bin-sdk/javafx-sdk-22/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics"
         },
+
+        //Current File
         {
             "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
             "vmArgs": "--module-path /home/jordan/Downloads/openjfx-22_linux-x64_bin-sdk/javafx-sdk-22/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics"
+        },
+
+        //Junit Testing
+        {
+            "type": "java",
+            "name": "Launch Test",
+            "request": "launch",
+            "mainClass": "org.junit.platform.console.ConsoleLauncher",
+            "args": [
+                "--classpath=target/classes",
+                "--scan-class-path"
+            ],
+            "vmArgs": "--class-path=lib/junit-jupiter-api-5.11.0-M2.jar:lib/junit-jupiter-engine-5.11.0-M2.jar:lib/hamcrest-core-2.2.jar:lib/junit-platform-console-standalone-1.11.0-M2.jar"
         }
     ]
 }

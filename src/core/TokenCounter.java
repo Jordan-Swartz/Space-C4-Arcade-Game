@@ -68,7 +68,7 @@ public class TokenCounter {
             }
         }
     }
-
+    
     /**
      * Enum type that defines the directions within the matrices.
      */

@@ -43,6 +43,24 @@ public class GameLogic {
     }
 
     /**
+     * Accessor method that returns the current token.
+     * 
+     * @return currentToken
+     */
+    public char getCurrentToken() {
+        return currentToken;
+    }
+
+    /**
+     * Mutator method that sets the current token.
+     * 
+     * @param currentToken
+     */
+    public void setCurrentToken(char currentToken) {
+        this.currentToken = currentToken;
+    }
+
+    /**
      * Creates a new game board and populates it with the default value '_'.
      * 
      * @return new 2D array of chars: board

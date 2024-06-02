@@ -97,6 +97,20 @@ public class TokenCounter {
     }
 
     /**
+     * Package-private method for unit testing.
+     * Sets up the horizontal row with testing values.
+     * 
+     * @param row
+     * @param rowData
+     */
+    void setHorizontalRow(int row, TokenData[] rowData) {
+        for (int i = 0; i < rowData.length; i++) {
+            horizontalCounts[row][i].setCount(rowData[i].getCount());
+            horizontalCounts[row][i].setToken(rowData[i].getToken());
+        }
+    }
+
+    /**
      * Returns isolated column array from vertical matrix.
      * 
      * @param col

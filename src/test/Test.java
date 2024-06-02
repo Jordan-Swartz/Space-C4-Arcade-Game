@@ -29,6 +29,9 @@ public class Test {
 
             console.displayBoard();
         }
+    }
 
+    public void runTest2() {
+        
     }
 }

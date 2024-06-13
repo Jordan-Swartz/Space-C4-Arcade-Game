@@ -1,6 +1,7 @@
 package test;
 
 import core.*;
+import core.TokenCounter.Direction;
 import ui.*;
 
 public class Test {
@@ -14,20 +15,31 @@ public class Test {
     
     public void runTest() {
         console.displayBoard();
+        logic.displayMatrixBoard(Direction.HORIZONTAL);
+        logic.displayMatrixBoard(Direction.VERTICAL);
         // logic.manageTurns();
 
         for (int i = 0; i < 100; i++) {
+
             int col = logic.getInput(2);
             int row = logic.findRow(col);
             logic.applyMove(row, col);   
             
             //test
-            logic.checkHorizontalWin(row, col);
+            if (logic.checkHorizontalWin(row, col) == true) {
+                System.out.println("4 in a row found - HZ");
+            }
+
+            if (logic.checkVerticalWin(row, col) == true) {
+                System.out.println("4 in a row found - VT");
+            }
             
             logic.incrementTurn();
             logic.manageTurns();
 
             console.displayBoard();
+            logic.displayMatrixBoard(Direction.HORIZONTAL);
+            logic.displayMatrixBoard(Direction.VERTICAL);
         }
     }
 

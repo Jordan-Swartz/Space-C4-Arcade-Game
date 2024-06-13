@@ -185,6 +185,15 @@ public class GameLogic {
 
     //dynamic checking for wins
 
+    /**
+     * Testing method used to display selected matrix board.
+     * 
+     * @param direction
+     */
+    public void displayMatrixBoard(Direction direction) {
+        tokenCounter.displayMatrix(direction);
+    }
+
 
     /**
      * 
@@ -197,7 +206,7 @@ public class GameLogic {
         TokenData[] rowArray =  tokenCounter.getHorizontalRow(row);
         int count = 1;
 
-        //search left/update counts 
+        //search left/update count
         for (int i = col-1; i >= 0; i--) {
             //later maybe add check for distinguishing whos token
             if (rowArray[i].getToken() == currentToken) {
@@ -207,9 +216,9 @@ public class GameLogic {
             }
         }
 
-        //search right/update counts
-        for (int i = col+1; i <= 6; i++) {
-            if (rowArray[i].getToken() == currentToken) {
+        //search right/update count
+        for (int j = col+1; j <= 6; j++) {
+            if (rowArray[j].getToken() == currentToken) {
                 count++;
             } else {
                 break;
@@ -218,13 +227,69 @@ public class GameLogic {
 
         //check for win count
         tokenCounter.updateTokenInfo(row, col, Direction.HORIZONTAL, count, currentToken);
-        if (rowArray[col].getCount() >= 4) {
+        if (count >= 4) {
             return true;
         } else {
             return false;
         }
     }   
 
+    /**
+     * 
+     * @param row
+     * @param col
+     * @return true if vt win found
+     */
+    public boolean checkVerticalWin(int row, int col) {
+        TokenData[] colArray = tokenCounter.getVerticalCol(col);
+        int count = 1;
+
+        //search down/update count
+        for (int i = row-1; i >= 0; i--) {
+            if (colArray[i].getToken() == currentToken) {
+                count++;
+            } else {
+                break;
+            }
+        }
+
+        //search up/update count
+        for (int j = row+1; j <= 5; j++) {
+            if (colArray[j].getToken() == currentToken) {
+                count++;
+            } else {
+                break;
+            }
+        }
+
+        //check for win count
+        tokenCounter.updateTokenInfo(row, col, Direction.VERTICAL, count, currentToken);
+        if (count >= 4) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 
+     * @param row
+     * @param col
+     * @return
+     */
+    public boolean checkDiagonalLTRWin(int row, int col) {
+        return false;
+    }
+
+    /**
+     * 
+     * @param row
+     * @param col
+     * @return
+     */
+    public boolean checkDiagonalRTLWin(int row, int col) {
+        return false;
+    }
 
 
 

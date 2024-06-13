@@ -127,6 +127,24 @@ public class TokenCounter {
        return colData;
     }
 
+    public TokenData[] getDiagonalrow(int row, int col, Direction direction) {
+        TokenInfo[][] matrix;
+        TokenData[] diagData = new TokenData[] 
+
+        //NOTE: Figure out array size since it changes with diag.
+
+        switch (direction) {
+            case DIAGONAL_LTR:
+                matrix = diagonalLTRCounts;
+                break;
+            case DIAGONAL_RTL:
+                matrix = diagonalRTLCounts;
+                break;
+        }
+
+        return null;
+    }
+
 
     //add other GETTERS
 
@@ -169,5 +187,44 @@ public class TokenCounter {
         tokenInfo.setToken(token);
     }
 
+    /**
+     * 
+     * @param direction
+     */
+    public void displayMatrix(Direction direction) {
+        TokenInfo[][] matrix;
+        String matrixName = "";
+
+        switch(direction) {
+            case HORIZONTAL:
+                matrix = horizontalCounts;
+                matrixName = "Horizontal Matrix";
+                break;
+            case VERTICAL:
+                matrix = verticalCounts;
+                matrixName = "Vertical Matrix";
+                break;
+            case DIAGONAL_LTR:
+                matrix = diagonalLTRCounts; 
+                matrixName = "Diagonal LTR Matrix";
+                break;
+            case DIAGONAL_RTL:
+                matrix = diagonalRTLCounts;
+                matrixName = "Diagonal RTL Matrix";
+                break;
+            default:
+                matrix = null;
+                break;
+        }
+
+        System.out.printf("%s:\n", matrixName);
+        for (int i = ROWS - 1; i >= 0; i--) {
+            for (int j = 0; j < COLUMNS; j++) {
+                char count = (char)('0' + matrix[i][j].getCount());
+                System.out.printf("| %c ", count);
+            }
+            System.out.println("|");
+        }
+    }
 
 }

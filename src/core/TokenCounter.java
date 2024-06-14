@@ -9,6 +9,9 @@ package core;
  */
 
 import static interfaces.C4Constants.*;
+
+import java.util.ArrayList;
+
 import dto.TokenData;
 
 public class TokenCounter {
@@ -129,9 +132,7 @@ public class TokenCounter {
 
     public TokenData[] getDiagonalrow(int row, int col, Direction direction) {
         TokenInfo[][] matrix;
-        TokenData[] diagData = new TokenData[] 
-
-        //NOTE: Figure out array size since it changes with diag.
+        ArrayList<TokenData> diagData = new ArrayList<>(); 
 
         switch (direction) {
             case DIAGONAL_LTR:
@@ -140,7 +141,24 @@ public class TokenCounter {
             case DIAGONAL_RTL:
                 matrix = diagonalRTLCounts;
                 break;
+            default:
+                matrix = null;
+                break;
         }
+
+        //move up if LTR
+         //move down if RTL
+        for (int i = col, j = row; i <= COLUMNS-1 && j <= ROWS-1; i++, j++) {
+            diagData.add(new TokenData(matrix[i][j].getCount(), matrix[i][j].getToken()));
+        }
+
+         //move down if LTR
+         //move up if RTL
+        for (int i = col, j = row; i >= 0 && j >= 0; i--, j--) {
+            diagData.add(new TokenData(matrix[i][j].getCount(), matrix[i][j].getToken()));
+        }
+    
+        //convert arrayList into array and return
 
         return null;
     }

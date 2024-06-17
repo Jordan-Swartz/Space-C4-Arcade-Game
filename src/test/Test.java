@@ -17,6 +17,8 @@ public class Test {
         console.displayBoard();
         logic.displayMatrixBoard(Direction.HORIZONTAL);
         logic.displayMatrixBoard(Direction.VERTICAL);
+        logic.displayMatrixBoard(Direction.DIAGONAL_LTR);
+        logic.displayMatrixBoard(Direction.DIAGONAL_RTL);
         // logic.manageTurns();
 
         for (int i = 0; i < 100; i++) {
@@ -33,6 +35,14 @@ public class Test {
             if (logic.checkVerticalWin(row, col) == true) {
                 System.out.println("4 in a row found - VT");
             }
+
+            if (logic.checkDiagonalLTRWin(row, col) == true) {
+                System.out.println("4 in a row found - D_LTR");
+            }
+
+            if (logic.checkDiagonalRTLWin(row, col) == true) {
+                System.out.println("4 in a row found - D_RTL");
+            }
             
             logic.incrementTurn();
             logic.manageTurns();
@@ -40,6 +50,8 @@ public class Test {
             console.displayBoard();
             logic.displayMatrixBoard(Direction.HORIZONTAL);
             logic.displayMatrixBoard(Direction.VERTICAL);
+            logic.displayMatrixBoard(Direction.DIAGONAL_LTR);
+            logic.displayMatrixBoard(Direction.DIAGONAL_RTL);
         }
     }
 

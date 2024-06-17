@@ -196,6 +196,7 @@ public class GameLogic {
 
 
     /**
+     * Checks for horizontal win and updates HZ TokenCounter matrix.
      * 
      * @param row
      * @param col
@@ -235,6 +236,7 @@ public class GameLogic {
     }   
 
     /**
+     * Checks for vertical win and updates VT TokenCounter matrix.
      * 
      * @param row
      * @param col
@@ -272,23 +274,77 @@ public class GameLogic {
     }
 
     /**
+     * Checks for D_LTR win and updates D_LTR TokenCounter matrix.
      * 
      * @param row
      * @param col
-     * @return
+     * @return true if D_LTR win found
      */
     public boolean checkDiagonalLTRWin(int row, int col) {
-        return false;
+        TokenData[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_LTR);
+        int count = 1;
+
+        //move up/right 
+        for (int i = col+1, j = row+1; i <= COLUMNS-1 && j <= ROWS-1; i++, j++) {
+            if (matrix[i][j].getToken() == currentToken) {
+                count++;
+            } else {
+                break;
+            }
+        }
+
+         //move down/left 
+         for (int i = col-1, j = row-1; i >= 0 && j >= 0; i--, j--) {
+            if (matrix[i][j].getToken() == currentToken) {
+                count++;
+            } else {
+                break;
+            }
+        }
+
+        tokenCounter.updateTokenInfo(row, col, Direction.VERTICAL, count, currentToken);
+        if (count >= 4) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
+     * Checks for D_RTL win and updates D_RTL TokenCounter matrix.
      * 
      * @param row
      * @param col
-     * @return
+     * @return true if D_RTL win found
      */
     public boolean checkDiagonalRTLWin(int row, int col) {
-        return false;
+        TokenData[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_LTR);
+        int count = 1;
+
+        //move up/left 
+        for (int i = col-1, j = row+1; i <= COLUMNS-1 && j <= ROWS-1; i--, j++) {
+            if (matrix[i][j].getToken() == currentToken) {
+                count++;
+            } else {
+                break;
+            }
+        }
+
+         //move down/right 
+         for (int i = col+1, j = row-1; i >= 0 && j >= 0; i++, j--) {
+            if (matrix[i][j].getToken() == currentToken) {
+                count++;
+            } else {
+                break;
+            }
+        }
+
+        tokenCounter.updateTokenInfo(row, col, Direction.VERTICAL, count, currentToken);
+        if (count >= 4) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

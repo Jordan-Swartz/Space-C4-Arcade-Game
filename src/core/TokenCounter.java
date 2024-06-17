@@ -71,6 +71,7 @@ public class TokenCounter {
             }
         }
     }
+
     
     /**
      * Enum type that defines the directions within the matrices.
@@ -78,8 +79,45 @@ public class TokenCounter {
     public enum Direction {
         HORIZONTAL,
         VERTICAL,
-        DIAGONAL_LTR,
-        DIAGONAL_RTL,
+        DIAGONAL_LTR,   //bottom (L) to top (R)
+        DIAGONAL_RTL,   //bottom (R) to top (L)
+    }
+
+    /**
+     * Returns copy of selected matrix in its current state.
+     * @param direction
+     * @return TokenData[][] matrix
+     */
+    public TokenData[][] getTokenMatrix(Direction direction) {
+        TokenData[][] copyMatrix = new TokenData[ROWS][COLUMNS];
+        TokenInfo[][] selectedMatrix;
+
+        switch (direction) {
+            case HORIZONTAL:
+                selectedMatrix = horizontalCounts;
+                break;
+            case VERTICAL:
+                selectedMatrix = verticalCounts;
+                break;
+            case DIAGONAL_LTR:
+                selectedMatrix = diagonalLTRCounts;
+                break;
+            case DIAGONAL_RTL:
+                selectedMatrix = diagonalRTLCounts;
+                break;
+            default:
+                selectedMatrix = null;
+                break;
+        }
+
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLUMNS; j++) {
+                copyMatrix[i][j] = new TokenData(selectedMatrix[i][j].getCount(), 
+                                             selectedMatrix[i][j].getToken());
+            }
+        }
+
+        return copyMatrix;
     }
 
     /**
@@ -129,43 +167,6 @@ public class TokenCounter {
 
        return colData;
     }
-
-    public TokenData[] getDiagonalrow(int row, int col, Direction direction) {
-        TokenInfo[][] matrix;
-        ArrayList<TokenData> diagData = new ArrayList<>(); 
-
-        switch (direction) {
-            case DIAGONAL_LTR:
-                matrix = diagonalLTRCounts;
-                break;
-            case DIAGONAL_RTL:
-                matrix = diagonalRTLCounts;
-                break;
-            default:
-                matrix = null;
-                break;
-        }
-
-        //move up if LTR
-         //move down if RTL
-        for (int i = col, j = row; i <= COLUMNS-1 && j <= ROWS-1; i++, j++) {
-            diagData.add(new TokenData(matrix[i][j].getCount(), matrix[i][j].getToken()));
-        }
-
-         //move down if LTR
-         //move up if RTL
-        for (int i = col, j = row; i >= 0 && j >= 0; i--, j--) {
-            diagData.add(new TokenData(matrix[i][j].getCount(), matrix[i][j].getToken()));
-        }
-    
-        //convert arrayList into array and return
-
-        return null;
-    }
-
-
-    //add other GETTERS
-
 
     /**
      * Private helper for updateTokenInfo that returns the correct TokenInfo Object.

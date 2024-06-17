@@ -206,6 +206,7 @@ public class TokenCounter {
     }
 
     /**
+     * Displays selected TokenCounter matrix.
      * 
      * @param direction
      */

@@ -6,6 +6,9 @@ public interface C4Constants {
     
     int PLAYER1 = 1;
     int PLAYER2 = 2;
+    
+    int PLAYER_PLAYER = 3;
+    int COMPUTER_PLAYER = 4;
 
     char PLAYER1_TOKEN = 'X';
     char PLAYER2_TOKEN = 'O';

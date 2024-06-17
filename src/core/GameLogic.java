@@ -139,10 +139,10 @@ public class GameLogic {
                 String choice = scnr.nextLine();
 
                 if (choice.equals("P")) {
-                    input = 1;
+                    input = 3;
                     valid = true;
                 } else if (choice.equals("C")) {
-                    input = 2;
+                    input = 4;
                     valid = true;
                 } else {
                     System.out.println("Ivalid input. Please choose again.");
@@ -179,11 +179,10 @@ public class GameLogic {
      */
     public void applyMove(int row, int col) {
         board[row][col] = currentToken;
-        //
     }
 
 
-    //dynamic checking for wins
+    //dynamic checking methods for wins
 
     /**
      * Testing method used to display selected matrix board.
@@ -209,7 +208,6 @@ public class GameLogic {
 
         //search left/update count
         for (int i = col-1; i >= 0; i--) {
-            //later maybe add check for distinguishing whos token
             if (rowArray[i].getToken() == currentToken) {
                 count++;
             } else {
@@ -243,6 +241,7 @@ public class GameLogic {
      * @return true if vt win found
      */
     public boolean checkVerticalWin(int row, int col) {
+        //grab column from VT matrix
         TokenData[] colArray = tokenCounter.getVerticalCol(col);
         int count = 1;
 
@@ -345,6 +344,26 @@ public class GameLogic {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Checks to see if there are any remaining spaces on the board. 
+     * 
+     * @return true if no empty spaces remaining
+     */
+    public boolean tieCheck() {
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLUMNS; j++) {
+                if (board[i][j] == '_') {
+                    return false;
+                }   
+            }
+        }
+        return true;
+    }
+
+    public void gameEnd() {
+
     }
 
 } 

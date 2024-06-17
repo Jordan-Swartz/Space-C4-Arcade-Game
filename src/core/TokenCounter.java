@@ -9,9 +9,6 @@ package core;
  */
 
 import static interfaces.C4Constants.*;
-
-import java.util.ArrayList;
-
 import dto.TokenData;
 
 public class TokenCounter {
@@ -85,6 +82,7 @@ public class TokenCounter {
 
     /**
      * Returns copy of selected matrix in its current state.
+     * 
      * @param direction
      * @return TokenData[][] matrix
      */

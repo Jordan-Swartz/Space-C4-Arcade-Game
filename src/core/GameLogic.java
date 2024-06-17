@@ -285,7 +285,7 @@ public class GameLogic {
         int count = 1;
 
         //move up/right 
-        for (int i = col+1, j = row+1; i <= COLUMNS-1 && j <= ROWS-1; i++, j++) {
+        for (int i = row+1, j = col+1; i <= ROWS-1 && j <= COLUMNS-1; i++, j++) {
             if (matrix[i][j].getToken() == currentToken) {
                 count++;
             } else {
@@ -294,7 +294,7 @@ public class GameLogic {
         }
 
          //move down/left 
-         for (int i = col-1, j = row-1; i >= 0 && j >= 0; i--, j--) {
+         for (int i = row-1, j = col-1; i >= 0 && j >= 0; i--, j--) {
             if (matrix[i][j].getToken() == currentToken) {
                 count++;
             } else {
@@ -302,7 +302,7 @@ public class GameLogic {
             }
         }
 
-        tokenCounter.updateTokenInfo(row, col, Direction.VERTICAL, count, currentToken);
+        tokenCounter.updateTokenInfo(row, col, Direction.DIAGONAL_LTR, count, currentToken);
         if (count >= 4) {
             return true;
         } else {
@@ -318,11 +318,11 @@ public class GameLogic {
      * @return true if D_RTL win found
      */
     public boolean checkDiagonalRTLWin(int row, int col) {
-        TokenData[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_LTR);
+        TokenData[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_RTL);
         int count = 1;
 
         //move up/left 
-        for (int i = col-1, j = row+1; i <= COLUMNS-1 && j <= ROWS-1; i--, j++) {
+        for (int i = row+1, j = col-1; i <= ROWS-1 && j >= 0; i++, j--) {
             if (matrix[i][j].getToken() == currentToken) {
                 count++;
             } else {
@@ -331,7 +331,7 @@ public class GameLogic {
         }
 
          //move down/right 
-         for (int i = col+1, j = row-1; i >= 0 && j >= 0; i++, j--) {
+         for (int i = row-1, j = col+1; i >= 0 && j <= COLUMNS-1; i--, j++) {
             if (matrix[i][j].getToken() == currentToken) {
                 count++;
             } else {
@@ -339,28 +339,12 @@ public class GameLogic {
             }
         }
 
-        tokenCounter.updateTokenInfo(row, col, Direction.VERTICAL, count, currentToken);
+        tokenCounter.updateTokenInfo(row, col, Direction.DIAGONAL_RTL, count, currentToken);
         if (count >= 4) {
             return true;
         } else {
             return false;
         }
     }
-
-
-
-    //use tokenCounter to 
-    // public void test() {
-    //     TokenInfo tokenInfo = tokenCounter.getTokenInfo(0, 0, Direction.HORIZONTAL);
-    //     TokenInfo[] row = tokenCounter.getHorizontalRow(0);
-    //     TokenInfo[] column = tokenCounter.getVerticalCol(0);
-
-    //     int count = tokenInfo.getCount();
-    //     char token = tokenInfo.getToken();
-        
-    //     tokenInfo.setCount(0);  //if tokenInfo already contains a token not empty
-    //     tokenCounter.updateTokenInfo(0, 0, Direction.HORIZONTAL, 0, 'X'); //if tokenInfo token is empty
-
-    // }
 
 } 

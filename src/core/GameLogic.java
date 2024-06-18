@@ -8,13 +8,11 @@ package core;
  */
 
 import static interfaces.C4Constants.*;
-import java.util.Random;
 import java.util.Scanner;
 import core.TokenCounter.*;
 import dto.TokenData;
 
 public class GameLogic {
-    private Random random;
     private Scanner scnr;
     private TokenCounter tokenCounter;
     private char[][] board;
@@ -25,7 +23,6 @@ public class GameLogic {
 
     public GameLogic(TokenCounter tokenCounter) {
         this.tokenCounter = tokenCounter;
-        this.random = new Random();
         this.scnr = new Scanner(System.in);
         this.board = createBoard();
         this.currentPlayer = 1;
@@ -40,6 +37,15 @@ public class GameLogic {
      */
     public char[][] getBoard() {
         return board;
+    }
+
+    /**
+     * Accessor method that returns the current player's number.
+     * 
+     * @return currentPlayer 
+     */
+    public int getCurrentPlayer() {
+        return currentPlayer;
     }
 
     /**
@@ -182,7 +188,7 @@ public class GameLogic {
     }
 
 
-    //dynamic checking methods for wins
+    //dynamic checking methods for win types.
 
     /**
      * Testing method used to display selected matrix board.
@@ -292,8 +298,8 @@ public class GameLogic {
             }
         }
 
-         //move down/left 
-         for (int i = row-1, j = col-1; i >= 0 && j >= 0; i--, j--) {
+        //move down/left 
+        for (int i = row-1, j = col-1; i >= 0 && j >= 0; i--, j--) {
             if (matrix[i][j].getToken() == currentToken) {
                 count++;
             } else {
@@ -362,8 +368,12 @@ public class GameLogic {
         return true;
     }
 
-    public void gameEnd() {
-
+    public void gameEnd(char condition) {
+        if (condition == WINNER) {
+            System.out.printf("%c got 4 in a row! Player%d wins!\n", currentToken, currentPlayer); 
+        } else if (condition == DRAW) {
+            System.out.printf("Game Over! It's a tie!\n");
+        }
     }
 
 } 

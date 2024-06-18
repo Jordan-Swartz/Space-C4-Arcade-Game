@@ -52,7 +52,8 @@ public class MainGUI extends Application implements C4Constants{
 
 
         //test
-        test.runTest();
+        // test.runTest();
+        test.runTest2();
     }
 
 }

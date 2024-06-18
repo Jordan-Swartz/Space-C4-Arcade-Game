@@ -13,6 +13,9 @@ public interface C4Constants {
     char PLAYER1_TOKEN = 'X';
     char PLAYER2_TOKEN = 'O';
 
+    char WINNER = 'W';
+    char DRAW = 'D';
+
     int START_INPUT = 1;
     int COLUMN_INPUT = 2;
 

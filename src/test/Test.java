@@ -56,6 +56,6 @@ public class Test {
     }
 
     public void runTest2() {
-        
+        console.startConsoleGame();
     }
 }

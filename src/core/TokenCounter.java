@@ -20,7 +20,7 @@ public class TokenCounter {
      * @version 1.0
      */
 
-    private class TokenInfo {
+    public class TokenInfo {
         private int count;
         private char token;
 
@@ -69,6 +69,21 @@ public class TokenCounter {
         }
     }
 
+    public TokenInfo[][] getHorizontalCounts() {
+        return horizontalCounts;
+    }
+
+    public TokenInfo[][] getVerticalCounts() {
+        return verticalCounts;
+    }
+
+    public TokenInfo[][] getDiagonalLTRCounts() {
+        return diagonalLTRCounts;
+    }
+
+    public TokenInfo[][] getDiagonalRTLCounts() {
+        return diagonalRTLCounts;
+    }
     
     /**
      * Enum type that defines the directions within the matrices.

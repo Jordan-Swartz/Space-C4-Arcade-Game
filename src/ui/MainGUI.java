@@ -29,7 +29,9 @@ public class MainGUI extends Application implements C4Constants{
         
         TokenCounter tokenCounter = new TokenCounter();
         GameLogic logic = new GameLogic(tokenCounter);
-        ComputerLogic computer = new ComputerLogic(logic);
+        Graph graph = new Graph(logic, tokenCounter);
+        BFS bfs = new BFS(graph);
+        ComputerLogic computer = new ComputerLogic(logic, graph, bfs);
         ConsoleUI console = new ConsoleUI(logic);
         Test test = new Test(console, logic);
 

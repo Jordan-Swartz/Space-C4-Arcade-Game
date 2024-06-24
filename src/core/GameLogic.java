@@ -8,7 +8,11 @@ package core;
  */
 
 import static interfaces.C4Constants.*;
+
+import java.util.LinkedList;
 import java.util.Scanner;
+
+import ai.Graph.Move;
 import core.TokenCounter.*;
 import dto.TokenData;
 
@@ -18,6 +22,7 @@ public class GameLogic {
     private char[][] board;
     private int currentPlayer;
     private char currentToken;
+    private char otherToken;
     private int turn;
 
 
@@ -27,6 +32,7 @@ public class GameLogic {
         this.board = createBoard();
         this.currentPlayer = 1;
         this.currentToken = PLAYER1_TOKEN;
+        this.otherToken = PLAYER2_TOKEN;
         this.turn = 0;
     }
 
@@ -58,12 +64,30 @@ public class GameLogic {
     }
 
     /**
+     * Accessor method that returns the non-current token.
+     * 
+     * @return currentToken
+     */
+    public char getOtherToken() {
+        return otherToken;
+    }
+
+    /**
      * Mutator method that sets the current token.
      * 
      * @param currentToken
      */
     public void setCurrentToken(char currentToken) {
         this.currentToken = currentToken;
+    }
+
+    /**
+     * Mutator method that sets the non-current token.
+     * 
+     * @param currentToken
+     */
+    public void setOtherToken(char otherToken) {
+        this.otherToken = otherToken;
     }
 
     /**
@@ -91,10 +115,12 @@ public class GameLogic {
             //even player
            currentPlayer = PLAYER1;
            currentToken = PLAYER1_TOKEN;
+           otherToken = PLAYER2_TOKEN;
         } else {
             //odd player
             currentPlayer = PLAYER2;
             currentToken = PLAYER2_TOKEN;
+            otherToken = PLAYER1_TOKEN;
         }
     }
 
@@ -140,7 +166,6 @@ public class GameLogic {
                     scnr.nextLine(); //clear scanner
                 }
                 
-
             } else if (type == START_INPUT) {
                 String choice = scnr.nextLine();
 
@@ -183,8 +208,26 @@ public class GameLogic {
      * @param row
      * @param col
      */
-    public void applyMove(int row, int col) {
-        board[row][col] = currentToken;
+    public void applyMove(int row, int col, char token) {
+        board[row][col] = token;
+    }
+
+    /**
+     * Returns a read-only list containing valid moves.
+     * @return Iterable<Move>
+     */
+    public Iterable<Move> getValidMoves() {
+        LinkedList<Move> validMoves = new LinkedList<>();
+
+        for (int i = 0; i < COLUMNS; i++) {
+            int row = findRow(i);
+            if (row != -1) {
+                validMoves.add(new Move(row, i));
+            }
+        }
+
+        
+        return validMoves;
     }
 
 
@@ -207,7 +250,7 @@ public class GameLogic {
      * @param col
      * @return true if hz win found
      */
-    public boolean checkHorizontalWin(int row, int col) {
+    public int getHorizontalCount(int row, int col) {
         //grab row from HZ matrix
         TokenData[] rowArray =  tokenCounter.getHorizontalRow(row);
         int count = 1;
@@ -237,6 +280,12 @@ public class GameLogic {
         } else {
             return false;
         }
+
+
+        /*
+         * UPDATE TO RETURN COUNT NOT TRUE OR FALSE
+         * change method getHorizontalCount
+         */
     }   
 
     /**

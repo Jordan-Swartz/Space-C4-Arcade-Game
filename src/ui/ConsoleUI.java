@@ -1,6 +1,8 @@
 package ui;
 
 import core.GameLogic;
+import core.TokenCounter.Direction;
+
 import static interfaces.C4Constants.*;
 
 import java.io.BufferedReader;
@@ -59,7 +61,7 @@ public class ConsoleUI {
                     row = logic.findRow(col);
 
                     if (row != -1) {
-                        logic.applyMove(row, col);
+                        logic.applyMove(row, col, logic.getCurrentToken());
                         valid = true;
                     } else {
                         System.out.println("Invalid input. Please choose again.");
@@ -76,7 +78,7 @@ public class ConsoleUI {
                         row = logic.findRow(col);
 
                         if (row != -1) {
-                            logic.applyMove(row, col);
+                            logic.applyMove(row, col, logic.getCurrentToken());
                             valid = true;
                         } else {
                             System.out.println("Invalid input. Please choose again.");
@@ -113,6 +115,11 @@ public class ConsoleUI {
             } else {
                 logic.incrementTurn();
                 logic.manageTurns();
+
+                logic.displayMatrixBoard(Direction.HORIZONTAL);
+                logic.displayMatrixBoard(Direction.VERTICAL);
+                logic.displayMatrixBoard(Direction.DIAGONAL_LTR);
+                logic.displayMatrixBoard(Direction.DIAGONAL_RTL);
             }
         }
     }

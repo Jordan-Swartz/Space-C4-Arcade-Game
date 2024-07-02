@@ -16,31 +16,51 @@ public class ComputerLogic {
     }
 
     public Move getComputerMove() {
-        // int[] computerMove = {0,0};
-        Move computerMove = null;
+        Move computerMove = findComputerMove();
 
-        // call checkPotentialWin
-        if (checkPotentialWin()) {
-
-        }
-
-        //Do something else with Move and then convert it to returnable array
+        // //win/block is found
+        // if (computerMove != null && computerMove.getIsWinningMove()) {
+        //     return computerMove;
+        // }
 
         return computerMove;
     }
 
-    public Move checkPotentialWin() {
+    public Move findComputerMove() {
+        Move move = null;
 
-        //test
+        //Get computer best move/Check for win
         Move playerBestMove = bfs.runBFS(0, logic.getCurrentToken());
-        if (playerBestMove.getMoveCount() >= 4) {
+        if (checkPotentialWin(playerBestMove)) {
             return playerBestMove;
         }
-        Move opponentBestMove = bfs.runBFS(0, logic.getOtherToken());
 
-        return false;
+        //Get opponent best move/Check for win-block
+        Move opponentBestMove = bfs.runBFS(0, logic.getOtherToken());
+        if (checkPotentialWin(opponentBestMove)) {
+            return opponentBestMove;
+        }
+        
+        /*
+         * Calculate other metrics for move if 4 isnt found
+         */
+
+
+        return move;
     }
 
+    /**
+     * 
+     * @param move
+     * @return
+     */
+    public boolean checkPotentialWin(Move move) {
+        if (move.getIsWinningMove()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     //start with BFS to do a quick search for winning or blocking oppponent win
     //switch to DFS if not found to look for best possible move
     //use token matrices to evaluate potential moves considering long term strat

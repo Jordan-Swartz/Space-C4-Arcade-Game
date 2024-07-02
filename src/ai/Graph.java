@@ -25,11 +25,13 @@ public class Graph {
         private int row;
         private int column;
         private int moveCount;
+        private boolean isWinningMove;
 
         public Move(int row, int column, int moveCount) {
             this.row = row;
             this.column = column;
             this.moveCount = moveCount;
+            this.isWinningMove = moveCount >= 4;
         }
 
         public int getRow() {
@@ -42,6 +44,10 @@ public class Graph {
 
         public int getMoveCount() {
             return moveCount;
+        }
+
+        public boolean getIsWinningMove() {
+            return isWinningMove;
         }
 
         public void setRow(int row) {
@@ -74,6 +80,7 @@ public class Graph {
     }
 
     /**
+     * Updates gameboard with simulated move.
      * 
      * @param row
      * @param col
@@ -84,16 +91,28 @@ public class Graph {
     }
 
     /**
+     * Evaluates the matricies with the simulated move to see which matrix 
+     * has the best count. 
      * 
-     * @return
+     * @return bestCount
      */
     public int evaluateMove(int row, int column) {
-        /*
-         * Find which matrix to use as best count choice for this move. 
-         */
+        //create simulated-move count array
+        int[] counts = new int[4];
+        counts[0] = logic.getHorizontalCount(row, column);
+        counts[1] = logic.getVerticalCount(row, column);
+        counts[2] = logic.getDiagonalLTRCount(row, column);
+        counts[3] = logic.getDiagonalRTLCount(row, column);
 
-        logic.getHorizontalCount(row, column);
-        return 0;
+        //find best count
+        int bestCount = counts[0];
+        for (int i = 1; i < counts.length; i++) {
+            if (bestCount < counts[i]) {
+                bestCount = counts[i];
+            }
+        }
+
+        return bestCount;
     }
     
     /**

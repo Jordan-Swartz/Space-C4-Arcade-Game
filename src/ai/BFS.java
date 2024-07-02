@@ -43,14 +43,10 @@ public class BFS {
             int moveCount = graph.evaluateMove(row, column);
 
             //win found
-            if (moveCount >= 4) {
-                //set bestMove data
-                bestMove.setRow(row);
-                bestMove.setColumn(column);
-                bestMove.setMoveCount(moveCount);             
-                graph.undoMove(move.getRow(), move.getColumn(), token);
-
-                return bestMove;
+            if (moveCount >= 4) {          
+                graph.undoMove(row, column, token);
+                //return new move with win flag triggered
+                return new Move(row, column, moveCount);
             }
 
             //add moveCount to best list

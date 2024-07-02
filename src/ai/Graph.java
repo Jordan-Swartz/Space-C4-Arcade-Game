@@ -24,10 +24,12 @@ public class Graph {
     public static class Move {
         private int row;
         private int column;
+        private int moveCount;
 
-        public Move(int row, int column) {
+        public Move(int row, int column, int moveCount) {
             this.row = row;
             this.column = column;
+            this.moveCount = moveCount;
         }
 
         public int getRow() {
@@ -36,6 +38,22 @@ public class Graph {
 
         public int getColumn() {
             return column;
+        }
+
+        public int getMoveCount() {
+            return moveCount;
+        }
+
+        public void setRow(int row) {
+            this.row = row;
+        }
+
+        public void setColumn(int column) {
+            this.column = column;
+        }
+
+        public void setMoveCount(int moveCount) {
+            this.moveCount = moveCount;
         }
     }
 

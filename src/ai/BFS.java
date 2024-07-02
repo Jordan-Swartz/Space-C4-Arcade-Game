@@ -25,23 +25,33 @@ public class BFS {
 
     public Move runBFS(int start, char token) {
         Iterator<Move> validMoves = graph.getValidMoves().iterator();
-        ArrayList<Integer> bestMoveCounts = new ArrayList<>();
-        Move bestMove = null;
+        ArrayList<Integer> bestMoveCounts = new ArrayList<>();  
+        Move bestMove = new Move(-1, -1, -1);
+
         int bestCount = -1;
-        int row = -1;
-        int column = -1;
 
         while (validMoves.hasNext()) {
             //grab move
             Move move = validMoves.next();
-            row = move.getRow();
-            column = move.getColumn();
+            int row = move.getRow();
+            int column = move.getColumn();
 
             //simulate move
             graph.simulateMove(row, column, token);
 
             //find best matrix count for that move
             int moveCount = graph.evaluateMove(row, column);
+
+            //win found
+            if (moveCount >= 4) {
+                //set bestMove data
+                bestMove.setRow(row);
+                bestMove.setColumn(column);
+                bestMove.setMoveCount(moveCount);             
+                graph.undoMove(move.getRow(), move.getColumn(), token);
+
+                return bestMove;
+            }
 
             //add moveCount to best list
             bestMoveCounts.add(moveCount);

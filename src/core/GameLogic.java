@@ -222,7 +222,7 @@ public class GameLogic {
         for (int i = 0; i < COLUMNS; i++) {
             int row = findRow(i);
             if (row != -1) {
-                validMoves.add(new Move(row, i));
+                validMoves.add(new Move(row, i, -1));
             }
         }
 
@@ -295,7 +295,7 @@ public class GameLogic {
      * @param col
      * @return true if vt win found
      */
-    public boolean checkVerticalWin(int row, int col) {
+    public int getVerticalCount(int row, int col) {
         //grab column from VT matrix
         TokenData[] colArray = tokenCounter.getVerticalCol(col);
         int count = 1;
@@ -334,7 +334,7 @@ public class GameLogic {
      * @param col
      * @return true if D_LTR win found
      */
-    public boolean checkDiagonalLTRWin(int row, int col) {
+    public int getDiagonalLTRCount(int row, int col) {
         TokenData[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_LTR);
         int count = 1;
 
@@ -371,7 +371,7 @@ public class GameLogic {
      * @param col
      * @return true if D_RTL win found
      */
-    public boolean checkDiagonalRTLWin(int row, int col) {
+    public int getDiagonalRTLCount(int row, int col) {
         TokenData[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_RTL);
         int count = 1;
 

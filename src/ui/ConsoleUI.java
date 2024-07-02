@@ -2,6 +2,8 @@ package ui;
 
 import core.GameLogic;
 import core.TokenCounter.Direction;
+import ai.ComputerLogic;
+import ai.Graph.Move;
 
 import static interfaces.C4Constants.*;
 
@@ -12,10 +14,12 @@ import java.io.InputStreamReader;
 
 public class ConsoleUI {
     private GameLogic logic;
+    private ComputerLogic computer;
     private char[][] board;
     
-    public ConsoleUI(GameLogic logic) {
+    public ConsoleUI(GameLogic logic, ComputerLogic computer) {
         this.logic = logic;
+        this.computer = computer;
         this.board = logic.getBoard();
     }
 
@@ -88,6 +92,11 @@ public class ConsoleUI {
                     System.out.println("Computer thinking...");
 
                     //collect computer input
+                    Move computerMove = computer.getComputerMove();
+                    row = computerMove.getRow();
+                    col = computerMove.getColumn();
+    
+                    logic.applyMove(row, col, logic.getCurrentToken());
                 }
             }
 

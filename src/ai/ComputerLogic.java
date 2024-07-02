@@ -1,5 +1,7 @@
 package ai;
 
+import ai.Graph.Move;
+// import ai.Graph.Move;
 import core.*;
 
 public class ComputerLogic {
@@ -13,16 +15,28 @@ public class ComputerLogic {
         this.bfs = bfs;
     }
 
-    public int[] getComputerMove() {
-        int[] computerMove = {0,0};
+    public Move getComputerMove() {
+        // int[] computerMove = {0,0};
+        Move computerMove = null;
+
+        // call checkPotentialWin
+        if (checkPotentialWin()) {
+
+        }
+
+        //Do something else with Move and then convert it to returnable array
+
         return computerMove;
     }
 
-    public boolean checkPotentialWin(char token) {
+    public Move checkPotentialWin() {
 
         //test
-        bfs.runBFS(0, logic.getCurrentToken());
-        bfs.runBFS(0, logic.getOtherToken());
+        Move playerBestMove = bfs.runBFS(0, logic.getCurrentToken());
+        if (playerBestMove.getMoveCount() >= 4) {
+            return playerBestMove;
+        }
+        Move opponentBestMove = bfs.runBFS(0, logic.getOtherToken());
 
         return false;
     }

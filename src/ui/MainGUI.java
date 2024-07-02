@@ -32,7 +32,7 @@ public class MainGUI extends Application implements C4Constants{
         Graph graph = new Graph(logic, tokenCounter);
         BFS bfs = new BFS(graph);
         ComputerLogic computer = new ComputerLogic(logic, graph, bfs);
-        ConsoleUI console = new ConsoleUI(logic);
+        ConsoleUI console = new ConsoleUI(logic, computer);
         Test test = new Test(console, logic);
 
         HBox box = new HBox(10);

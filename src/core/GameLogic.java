@@ -21,6 +21,7 @@ public class GameLogic {
     private char currentToken;
     private char otherToken;
     private int turn;
+    private Move previousMove;
 
 
     public GameLogic(TokenCounter tokenCounter) {
@@ -31,6 +32,7 @@ public class GameLogic {
         this.currentToken = PLAYER1_TOKEN;
         this.otherToken = PLAYER2_TOKEN;
         this.turn = 0;
+        this.previousMove = new Move (-1, -1, -1);
     }
 
     /**
@@ -67,6 +69,15 @@ public class GameLogic {
      */
     public char getOtherToken() {
         return otherToken;
+    }
+
+    /**
+     * Accessor method that returns the move of the previous turn.
+     * 
+     * @return previousMove
+     */
+    public Move getPreviousMove() {
+        return previousMove;
     }
 
     /**
@@ -206,7 +217,8 @@ public class GameLogic {
      * @param col
      */
     public void applyMove(int row, int col, char token) {
-        board[row][col] = token;
+        board[row][col] = token;      
+        previousMove = new Move (row, col, -1);
     }
 
     /**

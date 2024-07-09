@@ -76,10 +76,23 @@ public class MoveBFS {
             }
         }
 
-        int center = COLUMNS / 2;
-        for (Move move : topMoves) {
-            if (move.getColumn() == center) {
-               return move;
+        int center = COLUMNS / 2; 
+        Move previousMove = graph.getPreviousMove();
+
+        if (previousMove.getRow() == 0 && previousMove.getColumn() == 3) {
+            boolean isTwo = random.nextBoolean();
+            int index = 4;
+
+            if (isTwo) {
+                index = 2;
+            }     
+
+            return new Move(0, index, -1);
+        } else {
+            for (Move move : topMoves) {
+                if (move.getColumn() == center) {
+                   return move;
+                }
             }
         }
         

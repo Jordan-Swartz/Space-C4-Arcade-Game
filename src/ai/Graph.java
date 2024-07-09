@@ -87,7 +87,8 @@ public class Graph {
      * @param token
      */
     public void simulateMove(int row, int col, char token) {
-         logic.applyMove(row, col, token);
+         char[][] board = logic.getBoard();
+         board[row][col] = token;
     }
 
     /**
@@ -126,7 +127,8 @@ public class Graph {
      * @param token
      */
     public void undoMove(int row, int col) {
-        logic.applyMove(row, col, '_');
+        char[][] board = logic.getBoard();
+        board[row][col] = '_';
         updateMatrices(row, col);
     }
 
@@ -159,5 +161,14 @@ public class Graph {
     public Iterable<Move> getValidMoves() {
         Iterable<Move> validMoves = logic.getValidMoves();;
         return validMoves;
+    }
+
+    /**
+     * Retrieves the previous Move
+     * 
+     * @return previousMove
+     */
+    public Move getPreviousMove() {
+        return logic.getPreviousMove();
     }
 }

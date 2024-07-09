@@ -1,7 +1,7 @@
 package ai;
 
 /**
- * 
+ * Graph contains the logic for  
  * 
  * @author Jordan Swartz
  * @version 1.0   
@@ -64,15 +64,15 @@ public class Graph {
     }
 
     private GameLogic logic;
-    private TokenCounter tokenCounter;
+    private Random random;
     private TokenInfo[][] horizontalCounts;
     private TokenInfo[][] verticalCounts;
     private TokenInfo[][] diagonalLTRCounts;
     private TokenInfo[][] diagonalRTLCounts;
     
-    public Graph(GameLogic logic, TokenCounter tokenCounter) {
+    public Graph(GameLogic logic, TokenCounter tokenCounter, Random random) {
         this.logic = logic;
-        this.tokenCounter = tokenCounter;
+        this.random = random;
         this.horizontalCounts = tokenCounter.getHorizontalCounts();
         this.verticalCounts = tokenCounter.getVerticalCounts();
         this.diagonalLTRCounts = tokenCounter.getDiagonalLTRCounts();
@@ -96,19 +96,22 @@ public class Graph {
      * 
      * @return bestCount
      */
-    public int evaluateMove(int row, int column) {
+    public int evaluateMove(int row, int column, char token) {
         //create simulated-move count array
-        int[] counts = new int[4];
-        counts[0] = logic.getHorizontalCount(row, column);
-        counts[1] = logic.getVerticalCount(row, column);
-        counts[2] = logic.getDiagonalLTRCount(row, column);
-        counts[3] = logic.getDiagonalRTLCount(row, column);
+        int[] counts = new int[] {
+            logic.getDiagonalLTRCount(row, column, token),
+            logic.getDiagonalRTLCount(row, column, token),
+            logic.getHorizontalCount(row, column, token),
+            logic.getVerticalCount(row, column, token)
+        };
 
         //find best count
-        int bestCount = counts[0];
-        for (int i = 1; i < counts.length; i++) {
-            if (bestCount < counts[i]) {
-                bestCount = counts[i];
+        int index = random.nextInt(2);
+        int bestCount = counts[index];
+        
+        for (int count : counts) {
+            if (count > bestCount) {
+                bestCount = count;
             }
         }
 
@@ -121,8 +124,9 @@ public class Graph {
      * @param col
      * @param token
      */
-    public void undoMove(int row, int col, char token) {
-
+    public void undoMove(int row, int col) {
+        logic.applyMove(row, col, '_');
+        updateMatrices(row, col);
     }
 
     /**
@@ -131,8 +135,18 @@ public class Graph {
      * @param col
      * @param Token
      */
-    public void updateMatrices(int row, int col, char Token) {
-        //RETURN MATRIX BACK TO ORIGINAL STATE
+    public void updateMatrices(int row, int col) {
+        TokenInfo[][][] matrices = new TokenInfo[][][] {
+            horizontalCounts,
+            verticalCounts,
+            diagonalLTRCounts,
+            diagonalRTLCounts
+        };
+
+        for (TokenInfo[][] matrix : matrices) {
+            matrix[row][col].setCount(0);
+            matrix[row][col].setToken('_');
+        }
     }
 
     /**
@@ -143,5 +157,4 @@ public class Graph {
         Iterable<Move> validMoves = logic.getValidMoves();;
         return validMoves;
     }
-
 }

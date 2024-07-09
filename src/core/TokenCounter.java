@@ -9,6 +9,8 @@ package core;
  */
 
 import static interfaces.C4Constants.*;
+
+import core.GameLogic.Direction;
 import dto.TokenData;
 
 public class TokenCounter {
@@ -83,16 +85,6 @@ public class TokenCounter {
 
     public TokenInfo[][] getDiagonalRTLCounts() {
         return diagonalRTLCounts;
-    }
-    
-    /**
-     * Enum type that defines the directions within the matrices.
-     */
-    public enum Direction {
-        HORIZONTAL,
-        VERTICAL,
-        DIAGONAL_LTR,   //bottom (L) to top (R)
-        DIAGONAL_RTL,   //bottom (R) to top (L)
     }
 
     /**

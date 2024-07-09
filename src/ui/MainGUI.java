@@ -4,6 +4,7 @@ import core.*;
 import interfaces.C4Constants;
 import static interfaces.C4Constants.*;
 import ai.*;
+import java.util.Random;
 
 import javafx.application.Application;
 import javafx.geometry.*;
@@ -26,12 +27,12 @@ public class MainGUI extends Application implements C4Constants{
 
     @Override
     public void start(Stage stage) {
-        
+        Random random = new Random();
         TokenCounter tokenCounter = new TokenCounter();
         GameLogic logic = new GameLogic(tokenCounter);
-        Graph graph = new Graph(logic, tokenCounter);
-        BFS bfs = new BFS(graph);
-        ComputerLogic computer = new ComputerLogic(logic, graph, bfs);
+        Graph graph = new Graph(logic, tokenCounter, random);
+        MoveBFS bfs = new MoveBFS(graph, random);
+        ComputerLogic computer = new ComputerLogic(logic, bfs);
         ConsoleUI console = new ConsoleUI(logic, computer);
         Test test = new Test(console, logic);
 

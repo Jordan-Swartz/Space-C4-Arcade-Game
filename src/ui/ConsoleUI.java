@@ -1,7 +1,7 @@
 package ui;
 
 import core.GameLogic;
-import core.TokenCounter.Direction;
+import core.GameLogic.Direction;
 import ai.ComputerLogic;
 import ai.Graph.Move;
 
@@ -54,6 +54,7 @@ public class ConsoleUI {
         while (!end) {
             //display board
             displayBoard();
+            char token = logic.getCurrentToken();
 
             //player v player
             if (gameMode == PLAYER_PLAYER) {
@@ -65,7 +66,7 @@ public class ConsoleUI {
                     row = logic.findRow(col);
 
                     if (row != -1) {
-                        logic.applyMove(row, col, logic.getCurrentToken());
+                        logic.applyMove(row, col, token);
                         valid = true;
                     } else {
                         System.out.println("Invalid input. Please choose again.");
@@ -82,7 +83,7 @@ public class ConsoleUI {
                         row = logic.findRow(col);
 
                         if (row != -1) {
-                            logic.applyMove(row, col, logic.getCurrentToken());
+                            logic.applyMove(row, col, token);
                             valid = true;
                         } else {
                             System.out.println("Invalid input. Please choose again.");
@@ -91,29 +92,28 @@ public class ConsoleUI {
                 } else {
                     System.out.println("Computer thinking...");
 
-                    //collect computer input
                     Move computerMove = computer.getComputerMove();
                     row = computerMove.getRow();
                     col = computerMove.getColumn();
     
-                    logic.applyMove(row, col, logic.getCurrentToken());
+                    logic.applyMove(row, col, token);
                 }
             }
 
             //check for win
-            if (logic.checkHorizontalWin(row, col)) {
+            if (logic.checkForWin(Direction.HORIZONTAL, row, col, token)) {
                 end = true;
                 displayBoard();
                 logic.gameEnd(WINNER);
-            } else if (logic.checkVerticalWin(row, col)) {
+            } else if (logic.checkForWin(Direction.VERTICAL, row, col, token)) {
                 end = true;
                 displayBoard();
                 logic.gameEnd(WINNER);
-            } else if (logic.checkDiagonalLTRWin(row, col)) {
+            } else if (logic.checkForWin(Direction.DIAGONAL_LTR, row, col, token)) {
                 end = true;
                 displayBoard();
                 logic.gameEnd(WINNER);
-            } else if (logic.checkDiagonalRTLWin(row, col)) {
+            } else if (logic.checkForWin(Direction.DIAGONAL_RTL, row, col, token)) {
                 end = true;
                 displayBoard();
                 logic.gameEnd(WINNER);

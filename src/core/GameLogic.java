@@ -150,7 +150,7 @@ public class GameLogic {
 
         while (!valid) {
             if (type == COLUMN_INPUT) {
-                System.out.println("Player" + currentPlayer + "-your turn. Choose a column number 1-7.");
+                System.out.println("Player" + currentPlayer + " - your turn. Choose a column number 1-7.");
                 
                 if (scnr.hasNextInt()) {
                     input = (scnr.nextInt() - 1);
@@ -250,14 +250,14 @@ public class GameLogic {
      * @param col
      * @return true if hz win found
      */
-    public int getHorizontalCount(int row, int col) {
+    public int getHorizontalCount(int row, int col, char token) {
         //grab row from HZ matrix
         TokenData[] rowArray =  tokenCounter.getHorizontalRow(row);
         int count = 1;
 
         //search left/update count
         for (int i = col-1; i >= 0; i--) {
-            if (rowArray[i].getToken() == currentToken) {
+            if (rowArray[i].getToken() == token) {
                 count++;
             } else {
                 break;
@@ -266,7 +266,7 @@ public class GameLogic {
 
         //search right/update count
         for (int j = col+1; j <= 6; j++) {
-            if (rowArray[j].getToken() == currentToken) {
+            if (rowArray[j].getToken() == token) {
                 count++;
             } else {
                 break;
@@ -274,18 +274,8 @@ public class GameLogic {
         }
 
         //check for win count
-        tokenCounter.updateTokenInfo(row, col, Direction.HORIZONTAL, count, currentToken);
-        if (count >= 4) {
-            return true;
-        } else {
-            return false;
-        }
-
-
-        /*
-         * UPDATE TO RETURN COUNT NOT TRUE OR FALSE
-         * change method getHorizontalCount
-         */
+        tokenCounter.updateTokenInfo(row, col, Direction.HORIZONTAL, count, token);
+        return count;
     }   
 
     /**
@@ -295,14 +285,14 @@ public class GameLogic {
      * @param col
      * @return true if vt win found
      */
-    public int getVerticalCount(int row, int col) {
+    public int getVerticalCount(int row, int col, char token) {
         //grab column from VT matrix
         TokenData[] colArray = tokenCounter.getVerticalCol(col);
         int count = 1;
 
         //search down/update count
         for (int i = row-1; i >= 0; i--) {
-            if (colArray[i].getToken() == currentToken) {
+            if (colArray[i].getToken() == token) {
                 count++;
             } else {
                 break;
@@ -311,7 +301,7 @@ public class GameLogic {
 
         //search up/update count
         for (int j = row+1; j <= 5; j++) {
-            if (colArray[j].getToken() == currentToken) {
+            if (colArray[j].getToken() == token) {
                 count++;
             } else {
                 break;
@@ -319,12 +309,8 @@ public class GameLogic {
         }
 
         //check for win count
-        tokenCounter.updateTokenInfo(row, col, Direction.VERTICAL, count, currentToken);
-        if (count >= 4) {
-            return true;
-        } else {
-            return false;
-        }
+        tokenCounter.updateTokenInfo(row, col, Direction.VERTICAL, count, token);
+        return count;
     }
 
     /**
@@ -334,13 +320,13 @@ public class GameLogic {
      * @param col
      * @return true if D_LTR win found
      */
-    public int getDiagonalLTRCount(int row, int col) {
+    public int getDiagonalLTRCount(int row, int col, char token) {
         TokenData[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_LTR);
         int count = 1;
 
         //move up/right 
         for (int i = row+1, j = col+1; i <= ROWS-1 && j <= COLUMNS-1; i++, j++) {
-            if (matrix[i][j].getToken() == currentToken) {
+            if (matrix[i][j].getToken() == token) {
                 count++;
             } else {
                 break;
@@ -349,19 +335,15 @@ public class GameLogic {
 
         //move down/left 
         for (int i = row-1, j = col-1; i >= 0 && j >= 0; i--, j--) {
-            if (matrix[i][j].getToken() == currentToken) {
+            if (matrix[i][j].getToken() == token) {
                 count++;
             } else {
                 break;
             }
         }
 
-        tokenCounter.updateTokenInfo(row, col, Direction.DIAGONAL_LTR, count, currentToken);
-        if (count >= 4) {
-            return true;
-        } else {
-            return false;
-        }
+        tokenCounter.updateTokenInfo(row, col, Direction.DIAGONAL_LTR, count, token);
+        return count;
     }
 
     /**
@@ -371,13 +353,13 @@ public class GameLogic {
      * @param col
      * @return true if D_RTL win found
      */
-    public int getDiagonalRTLCount(int row, int col) {
+    public int getDiagonalRTLCount(int row, int col, char token) {
         TokenData[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_RTL);
         int count = 1;
 
         //move up/left 
         for (int i = row+1, j = col-1; i <= ROWS-1 && j >= 0; i++, j--) {
-            if (matrix[i][j].getToken() == currentToken) {
+            if (matrix[i][j].getToken() == token) {
                 count++;
             } else {
                 break;
@@ -386,19 +368,57 @@ public class GameLogic {
 
          //move down/right 
          for (int i = row-1, j = col+1; i >= 0 && j <= COLUMNS-1; i--, j++) {
-            if (matrix[i][j].getToken() == currentToken) {
+            if (matrix[i][j].getToken() == token) {
                 count++;
             } else {
                 break;
             }
         }
 
-        tokenCounter.updateTokenInfo(row, col, Direction.DIAGONAL_RTL, count, currentToken);
+        tokenCounter.updateTokenInfo(row, col, Direction.DIAGONAL_RTL, count, token);
+        return count;
+    }
+
+    /**
+     * Enum type that defines the directions within the matrices.
+     */
+    public enum Direction {
+        HORIZONTAL,
+        VERTICAL,
+        DIAGONAL_LTR,   //bottom (L) to top (R)
+        DIAGONAL_RTL,   //bottom (R) to top (L)
+    }
+
+    /**
+     * 
+     * @param direction
+     * @param row
+     * @param col
+     * @return
+     */
+    public boolean checkForWin(Direction direction, int row, int col, char token) {
+        int count = -1;
+
+        switch(direction) {
+            case HORIZONTAL:
+                count = getHorizontalCount(row, col, token);
+                break;
+            case VERTICAL:
+                count = getVerticalCount(row, col, token);
+                break;
+            case DIAGONAL_LTR:
+                count = getDiagonalLTRCount(row, col, token);
+                break;
+            case DIAGONAL_RTL:
+                count = getDiagonalRTLCount(row, col, token);
+                break;
+        }
+
         if (count >= 4) {
             return true;
-        } else {
-            return false;
-        }
+        } 
+
+        return false;    
     }
 
     /**

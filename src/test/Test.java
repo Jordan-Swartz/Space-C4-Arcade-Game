@@ -1,7 +1,7 @@
 package test;
 
 import core.*;
-import core.TokenCounter.Direction;
+import core.GameLogic.Direction;
 import ui.*;
 
 public class Test {
@@ -14,45 +14,45 @@ public class Test {
     }
     
     public void runTest() {
-        console.displayBoard();
-        logic.displayMatrixBoard(Direction.HORIZONTAL);
-        logic.displayMatrixBoard(Direction.VERTICAL);
-        logic.displayMatrixBoard(Direction.DIAGONAL_LTR);
-        logic.displayMatrixBoard(Direction.DIAGONAL_RTL);
-        // logic.manageTurns();
+        // console.displayBoard();
+        // logic.displayMatrixBoard(Direction.HORIZONTAL);
+        // logic.displayMatrixBoard(Direction.VERTICAL);
+        // logic.displayMatrixBoard(Direction.DIAGONAL_LTR);
+        // logic.displayMatrixBoard(Direction.DIAGONAL_RTL);
+        // // logic.manageTurns();
 
-        for (int i = 0; i < 100; i++) {
+        // for (int i = 0; i < 100; i++) {
 
-            int col = logic.getInput(2);
-            int row = logic.findRow(col);
-            logic.applyMove(row, col);   
+        //     int col = logic.getInput(2);
+        //     int row = logic.findRow(col);
+        //     logic.applyMove(row, col);   
             
-            //test
-            if (logic.checkHorizontalWin(row, col) == true) {
-                System.out.println("4 in a row found - HZ");
-            }
+        //     //test
+        //     if (logic.checkHorizontalWin(row, col) == true) {
+        //         System.out.println("4 in a row found - HZ");
+        //     }
 
-            if (logic.checkVerticalWin(row, col) == true) {
-                System.out.println("4 in a row found - VT");
-            }
+        //     if (logic.checkVerticalWin(row, col) == true) {
+        //         System.out.println("4 in a row found - VT");
+        //     }
 
-            if (logic.checkDiagonalLTRWin(row, col) == true) {
-                System.out.println("4 in a row found - D_LTR");
-            }
+        //     if (logic.checkDiagonalLTRWin(row, col) == true) {
+        //         System.out.println("4 in a row found - D_LTR");
+        //     }
 
-            if (logic.checkDiagonalRTLWin(row, col) == true) {
-                System.out.println("4 in a row found - D_RTL");
-            }
+        //     if (logic.checkDiagonalRTLWin(row, col) == true) {
+        //         System.out.println("4 in a row found - D_RTL");
+        //     }
             
-            logic.incrementTurn();
-            logic.manageTurns();
+        //     logic.incrementTurn();
+        //     logic.manageTurns();
 
-            console.displayBoard();
-            logic.displayMatrixBoard(Direction.HORIZONTAL);
-            logic.displayMatrixBoard(Direction.VERTICAL);
-            logic.displayMatrixBoard(Direction.DIAGONAL_LTR);
-            logic.displayMatrixBoard(Direction.DIAGONAL_RTL);
-        }
+        //     console.displayBoard();
+        //     logic.displayMatrixBoard(Direction.HORIZONTAL);
+        //     logic.displayMatrixBoard(Direction.VERTICAL);
+        //     logic.displayMatrixBoard(Direction.DIAGONAL_LTR);
+        //     logic.displayMatrixBoard(Direction.DIAGONAL_RTL);
+        // }
     }
 
     public void runTest2() {

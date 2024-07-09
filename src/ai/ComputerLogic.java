@@ -1,7 +1,7 @@
 package ai;
 
 /**
- * 
+ * ComputerLogic defines and implements the methods for the basic AI computer algorithm.
  * 
  * @author Jordan Swartz
  * @version 1.0
@@ -20,14 +20,15 @@ public class ComputerLogic {
     }
 
     /**
+     * Finds the computer's best move.
      * 
-     * @return
+     * @return computerBestMove
      */
     public Move getComputerMove() {
        //Get computer best move/Check for win
-       Move playerBestMove = bfs.runMoveBFS(0, logic.getCurrentToken());
-       if (checkPotentialWin(playerBestMove)) {
-           return playerBestMove;
+       Move computerBestMove = bfs.runMoveBFS(0, logic.getCurrentToken());
+       if (checkPotentialWin(computerBestMove)) {
+           return computerBestMove;
        }
 
        //Get opponent best move/Check for win-block
@@ -36,13 +37,14 @@ public class ComputerLogic {
            return opponentBestMove;
        }
 
-       return playerBestMove;
+       return computerBestMove;
     }
 
     /**
+     * Checks to see if move is flagged as a winning move. 
      * 
      * @param move
-     * @return
+     * @return true is move is winning move
      */
     public boolean checkPotentialWin(Move move) {
         return move.getIsWinningMove();

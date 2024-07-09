@@ -9,9 +9,7 @@ package core;
  */
 
 import static interfaces.C4Constants.*;
-
 import core.GameLogic.Direction;
-import dto.TokenData;
 
 public class TokenCounter {
 
@@ -88,55 +86,37 @@ public class TokenCounter {
     }
 
     /**
-     * Returns copy of selected matrix in its current state.
+     * Returns selected matrix
      * 
      * @param direction
-     * @return TokenData[][] matrix
+     * @return TokenInfo[][] matrix
      */
-    public TokenData[][] getTokenMatrix(Direction direction) {
-        TokenData[][] copyMatrix = new TokenData[ROWS][COLUMNS];
-        TokenInfo[][] selectedMatrix;
-
+    public TokenInfo[][] getTokenMatrix(Direction direction) {
         switch (direction) {
             case HORIZONTAL:
-                selectedMatrix = horizontalCounts;
-                break;
+                return horizontalCounts;
             case VERTICAL:
-                selectedMatrix = verticalCounts;
-                break;
+                return verticalCounts;
             case DIAGONAL_LTR:
-                selectedMatrix = diagonalLTRCounts;
-                break;
+                return diagonalLTRCounts;
             case DIAGONAL_RTL:
-                selectedMatrix = diagonalRTLCounts;
-                break;
+                return diagonalRTLCounts;
             default:
-                selectedMatrix = null;
-                break;
+                return null;
         }
-
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j < COLUMNS; j++) {
-                copyMatrix[i][j] = new TokenData(selectedMatrix[i][j].getCount(), 
-                                             selectedMatrix[i][j].getToken());
-            }
-        }
-
-        return copyMatrix;
     }
 
     /**
      * Returns isolated row array from horizontal matrix.
      * 
      * @param row
-     * @return TokenData[] row
+     * @return TokenInfo[] row
      */
-    public TokenData[] getHorizontalRow(int row) {
-        TokenData[] rowData = new TokenData[COLUMNS];
+    public TokenInfo[] getHorizontalRow(int row) {
+        TokenInfo[] rowData = new TokenInfo[COLUMNS];
 
         for (int i = 0; i < COLUMNS; i++) {
-            rowData[i] = new TokenData(horizontalCounts[row][i].getCount(), 
-                                       horizontalCounts[row][i].getToken());
+            rowData[i] = horizontalCounts[row][i];
         }
 
         return rowData;
@@ -149,7 +129,7 @@ public class TokenCounter {
      * @param row
      * @param rowData
      */
-    void setHorizontalRow(int row, TokenData[] rowData) {
+    void setHorizontalRow(int row, TokenInfo[] rowData) {
         for (int i = 0; i < rowData.length; i++) {
             horizontalCounts[row][i].setCount(rowData[i].getCount());
             horizontalCounts[row][i].setToken(rowData[i].getToken());
@@ -160,14 +140,13 @@ public class TokenCounter {
      * Returns isolated column array from vertical matrix.
      * 
      * @param col
-     * @return TokenData[] column
+     * @return TokenInfo[] column
      */
-    public TokenData[] getVerticalCol(int col) {
-       TokenData[] colData = new TokenData[ROWS];
+    public TokenInfo[] getVerticalCol(int col) {
+       TokenInfo[] colData = new TokenInfo[ROWS];
 
        for (int i = 0; i < ROWS; i++) {
-            colData[i] = new TokenData(verticalCounts[i][col].getCount(),
-                                       verticalCounts[i][col].getToken());
+            colData[i] = verticalCounts[i][col];
        }
 
        return colData;

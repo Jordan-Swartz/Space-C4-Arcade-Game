@@ -8,13 +8,10 @@ package core;
  */
 
 import static interfaces.C4Constants.*;
-
 import java.util.LinkedList;
 import java.util.Scanner;
-
 import ai.Graph.Move;
 import core.TokenCounter.*;
-import dto.TokenData;
 
 public class GameLogic {
     private Scanner scnr;
@@ -252,7 +249,7 @@ public class GameLogic {
      */
     public int getHorizontalCount(int row, int col, char token) {
         //grab row from HZ matrix
-        TokenData[] rowArray =  tokenCounter.getHorizontalRow(row);
+        TokenInfo[] rowArray =  tokenCounter.getHorizontalRow(row);
         int count = 1;
 
         //search left/update count
@@ -287,7 +284,7 @@ public class GameLogic {
      */
     public int getVerticalCount(int row, int col, char token) {
         //grab column from VT matrix
-        TokenData[] colArray = tokenCounter.getVerticalCol(col);
+        TokenInfo[] colArray = tokenCounter.getVerticalCol(col);
         int count = 1;
 
         //search down/update count
@@ -321,7 +318,7 @@ public class GameLogic {
      * @return true if D_LTR win found
      */
     public int getDiagonalLTRCount(int row, int col, char token) {
-        TokenData[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_LTR);
+        TokenInfo[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_LTR);
         int count = 1;
 
         //move up/right 
@@ -354,7 +351,7 @@ public class GameLogic {
      * @return true if D_RTL win found
      */
     public int getDiagonalRTLCount(int row, int col, char token) {
-        TokenData[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_RTL);
+        TokenInfo[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_RTL);
         int count = 1;
 
         //move up/left 

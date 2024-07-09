@@ -1,7 +1,7 @@
 package ai;
 
 /**
- * Graph contains the logic for  
+ * Graph contains the logic and structure for the MoveBFS class
  * 
  * @author Jordan Swartz
  * @version 1.0   
@@ -108,7 +108,7 @@ public class Graph {
         //find best count
         int index = random.nextInt(2);
         int bestCount = counts[index];
-        
+
         for (int count : counts) {
             if (count > bestCount) {
                 bestCount = count;
@@ -119,6 +119,7 @@ public class Graph {
     }
     
     /**
+     * Updates gameboard back to original state.
      * 
      * @param row
      * @param col
@@ -130,6 +131,7 @@ public class Graph {
     }
 
     /**
+     * Updates matricies back to original states.
      * 
      * @param row
      * @param col
@@ -150,8 +152,9 @@ public class Graph {
     }
 
     /**
+     * Retrieves list of valid moves for current turn.
      * 
-     * @return
+     * @return Iterable<Move>
      */
     public Iterable<Move> getValidMoves() {
         Iterable<Move> validMoves = logic.getValidMoves();;

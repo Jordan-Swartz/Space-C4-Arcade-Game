@@ -1,7 +1,5 @@
 package ai;
 
-import static interfaces.C4Constants.COLUMNS;
-
 /**
  * MoveBFS contains the BFS-like algorithm to find the best computer move. 
  * 
@@ -9,10 +7,11 @@ import static interfaces.C4Constants.COLUMNS;
  * @version 1.0   
  */
 
+import static interfaces.C4Constants.COLUMNS;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-
 import ai.Graph.Move;
 
 public class MoveBFS {

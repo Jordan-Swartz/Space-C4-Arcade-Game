@@ -157,7 +157,7 @@ public class ConsoleUI {
      * Displays the ASCII text Title.
      */
     public void displayTitle() {
-        InputStream input = getClass().getResourceAsStream("connect4ascii.txt");
+        InputStream input = getClass().getResourceAsStream("/resources/text/connect4ascii.txt");
         if (input != null) {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
                 String line;

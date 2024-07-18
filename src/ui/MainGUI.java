@@ -4,9 +4,13 @@ import core.*;
 import interfaces.C4Constants;
 import static interfaces.C4Constants.*;
 import ai.*;
+
+import java.io.IOException;
+import java.net.URL;
 import java.util.Random;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.*;
 import javafx.stage.*;
 import test.Test;
@@ -26,7 +30,7 @@ public class MainGUI extends Application implements C4Constants{
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws IOException {
         Random random = new Random();
         TokenCounter tokenCounter = new TokenCounter();
         GameLogic logic = new GameLogic(tokenCounter);
@@ -36,26 +40,19 @@ public class MainGUI extends Application implements C4Constants{
         ConsoleUI console = new ConsoleUI(logic, computer);
         Test test = new Test(console, logic);
 
-        HBox box = new HBox(10);
-        box.setAlignment(Pos.CENTER);
+        String fxmlFile = "/resources/fxml/Test1.fxml";
+        URL fxmlLocation = getClass().getResource(fxmlFile);
 
-        Button btn1 = new Button("GUI");
-        Button btn2 = new Button("Text Console");
+        if (fxmlLocation == null) {
+            throw new RuntimeException("FXML file not found: " + fxmlFile);
+        }
 
-        btn1.setPrefWidth(100);
-        btn2.setPrefWidth(100);
-
-        HBox.setMargin(btn1, new Insets(10, 10, 10, 10));
-        HBox.setMargin(btn2, new Insets(10, 10, 10, 10));
-        
-
-        box.getChildren().addAll(btn1, btn2);
-        stage.setScene(new Scene(box, 500, 500));
+        Parent root = FXMLLoader.load(fxmlLocation);
+        Scene scene = new Scene(root);
+        stage.setTitle("Test Application");
+        stage.setScene(scene);
         stage.show();
-
-
-        //test
-        // test.runTest();
+        
         test.runTest2();
     }
 

@@ -53,7 +53,7 @@ public class MainGUI extends Application implements C4Constants{
         stage.setScene(scene);
         stage.show();
         
-        test.runTest2();
+        // test.runTest2();
     }
 
 }

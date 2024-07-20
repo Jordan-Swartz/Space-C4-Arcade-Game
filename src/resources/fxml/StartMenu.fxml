@@ -65,10 +65,14 @@
                            <children>
                               <AnchorPane layoutX="17.0" layoutY="15.0" prefHeight="200.0" prefWidth="469.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                                  <children>
-                                    <Label alignment="CENTER" layoutX="-42.0" layoutY="-38.0" prefHeight="113.0" prefWidth="478.0" styleClass="hover-effect" text="CONNECT" textFill="#9152a4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Label alignment="CENTER" layoutX="-42.0" layoutY="-38.0" prefHeight="113.0" prefWidth="478.0" text="CONNECT" textFill="#9152a4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <font>
                                           <Font name="Aerologica Regular" size="64.0" />
                                        </font>
+                                       <styleClass>
+                                          <String fx:value="custom-label" />
+                                          <String fx:value="hover-effect" />
+                                       </styleClass>
                                     </Label>
                                  </children>
                               </AnchorPane>
@@ -103,7 +107,7 @@
                                           <Font name="Aerologica Regular" size="30.0" />
                                        </font>
                                        <styleClass>
-                                          <String fx:value="enlarge-button" />
+                                          <String fx:value="custom-button" />
                                           <String fx:value="hover-effect" />
                                        </styleClass>
                                     </Button>

@@ -1,6 +1,8 @@
-/* Apply the built-in fonts */
-/* Apply the hover effect to the button */
-.button {
+/*
+ *Contains custom CSS styling for GUI components
+ */
+
+.custom-button {
     -fx-background-color: #3fb566;
     -fx-text-fill: white;
     -fx-padding: 10px 20px;
@@ -9,6 +11,10 @@
     -fx-background-radius: 40px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
     -fx-transition: -fx-scale-x 0.3s ease-in-out, -fx-scale-y 0.3s ease-in-out;
+}
+
+.custom-label {
+    -fx-background-color: #3fb566;
 }
 
 /* Hover effect */

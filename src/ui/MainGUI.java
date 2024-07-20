@@ -40,7 +40,7 @@ public class MainGUI extends Application implements C4Constants{
         ConsoleUI console = new ConsoleUI(logic, computer);
         Test test = new Test(console, logic);
 
-        String fxmlFile = "/resources/fxml/Test1.fxml";
+        String fxmlFile = "/resources/fxml/StartMenu.fxml";
         URL fxmlLocation = getClass().getResource(fxmlFile);
 
         if (fxmlLocation == null) {

@@ -31,6 +31,7 @@ public class MainGUI extends Application implements C4Constants{
 
     @Override
     public void start(Stage stage) throws IOException {
+        //object instantiation
         Random random = new Random();
         TokenCounter tokenCounter = new TokenCounter();
         GameLogic logic = new GameLogic(tokenCounter);
@@ -40,7 +41,8 @@ public class MainGUI extends Application implements C4Constants{
         ConsoleUI console = new ConsoleUI(logic, computer);
         Test test = new Test(console, logic);
 
-        String fxmlFile = "/resources/fxml/StartMenu.fxml";
+        //
+        String fxmlFile = "/resources/fxml/C4StartMenu.fxml";
         URL fxmlLocation = getClass().getResource(fxmlFile);
 
         if (fxmlLocation == null) {
@@ -48,6 +50,7 @@ public class MainGUI extends Application implements C4Constants{
         }
 
         Parent root = FXMLLoader.load(fxmlLocation);
+        
         Scene scene = new Scene(root);
         stage.setTitle("Test Application");
         stage.setScene(scene);

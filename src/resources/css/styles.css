@@ -2,23 +2,17 @@
  *Contains custom CSS styling for GUI components
  */
 
-.custom-button {
-    -fx-background-color: #3fb566;
-    -fx-text-fill: white;
-    -fx-padding: 10px 20px;
-    -fx-cursor: hand;
-    -fx-border-radius: 40px;
-    -fx-background-radius: 40px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
-    -fx-transition: -fx-scale-x 0.3s ease-in-out, -fx-scale-y 0.3s ease-in-out;
-}
+ .custom-button-1 {
+    -fx-background-color: rgb(72, 247, 72); 
+    -fx-text-fill: rgb(5, 66, 85);
+ }
 
-.custom-label {
-    -fx-background-color: #3fb566;
-}
+ .custom-label-1 {
+    -fx-background-color: rgb(248, 111, 218);
+    -fx-text-fill: rgb(5, 66, 85);
+ }
 
-/* Hover effect */
-.hover-effect:hover {
+ .hover-effect:hover {
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
-}
+ }

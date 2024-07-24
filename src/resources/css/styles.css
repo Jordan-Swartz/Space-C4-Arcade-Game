@@ -5,11 +5,36 @@
  .custom-button-1 {
     -fx-background-color: rgb(72, 247, 72); 
     -fx-text-fill: rgb(5, 66, 85);
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
  }
 
  .custom-label-1 {
     -fx-background-color: rgb(248, 111, 218);
     -fx-text-fill: rgb(5, 66, 85);
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+ }
+
+ .image-1 {
+    -fx-background-image: url("/resources/images/arcadeBG.png");
+ }
+
+ .image-2 {
+    -fx-background-image: url("/resources/images/arcadeLogo.png");
+ }
+
+ .custom-image {
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%; 
+ }
+
+ .custom-mirror {
+    -fx-scale-x: -1;
  }
 
  .hover-effect:hover {

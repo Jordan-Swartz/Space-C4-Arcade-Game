@@ -1,13 +1,20 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import ui.UtilitesGUI;
 
 public class StartMenuController {
     private Stage stage;
+
+    @FXML
+    private VBox rootVBox;
 
     @FXML
     private Label titleLabel1;
@@ -21,6 +28,15 @@ public class StartMenuController {
     @FXML
     private Button startButton; 
 
+    @FXML
+    private ImageView view;
+
+    @FXML 
+    private AnchorPane rootAnchor;
+
+    /**
+     * 
+     */
     public void initialize() {
         //apply fonts
         UtilitesGUI.applyFont(titleLabel1);
@@ -32,5 +48,36 @@ public class StartMenuController {
         UtilitesGUI.setInitialSize(titleLabel1, 50);
         UtilitesGUI.setInitialSize(titleLabel2, 50);
         UtilitesGUI.setInitialSize(titleLabel3, 50);
+        UtilitesGUI.setInitialSize(startButton, 20);
     }
+
+    /**
+     * 
+     * @param stage
+     */
+    public void setStage(Stage stage) {
+        this.stage = stage;
+
+        //bind labels to stage
+        UtilitesGUI.makeLabelResponsive(titleLabel1, stage, 40, 100);
+        UtilitesGUI.makeLabelResponsive(titleLabel2, stage, 40, 100);
+        UtilitesGUI.makeLabelResponsive(titleLabel3, stage, 40, 100);
+
+        //bind images to stage
+        // UtilitesGUI.makeImageResponsive(view, stage, rootAnchor, "/resources/images/arcadeLogo.png");
+
+        rootVBox.prefWidthProperty().bind(stage.widthProperty());
+        rootVBox.prefHeightProperty().bind(stage.heightProperty());
+
+        // Adjust padding/margin dynamically
+        // stage.widthProperty().addListener((observable, oldValue, newValue) -> adjustPadding());
+        // adjustPadding();
+    }
+
+    // private void adjustPadding() {
+    //     double stageWidth = stage.getWidth();
+    //     double leftPadding = stageWidth * 0.03; // Adjust this ratio as needed
+
+    //     rootAnchor.setPadding(new Insets(0, 0, 0, leftPadding));
+    // }
 }

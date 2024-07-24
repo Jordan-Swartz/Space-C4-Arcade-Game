@@ -10,9 +10,8 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="731.0" prefWidth="896.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartMenuController">
+<VBox fx:id="rootVBox" prefHeight="731.0" prefWidth="896.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartMenuController">
    <children>
       <MenuBar prefWidth="701.0">
         <menus>
@@ -37,9 +36,14 @@
          <children>
             <SplitPane dividerPositions="0.33, 0.66" orientation="VERTICAL" prefHeight="200.0" prefWidth="896.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
-                  <SplitPane dividerPositions="0.3" prefHeight="160.0" prefWidth="200.0">
+                  <SplitPane fx:id="topSplitPane" dividerPositions="0.3" prefHeight="160.0" prefWidth="200.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <styleClass>
+                              <String fx:value="image-1" />
+                              <String fx:value="custom-image" />
+                              <String fx:value="custom-mirror" />
+                           </styleClass></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
@@ -49,9 +53,6 @@
                                           <String fx:value="custom-label-1" />
                                           <String fx:value="hover-effect" />
                                        </styleClass>
-                                       <font>
-                                          <Font size="64.0" />
-                                       </font>
                                     </Label>
                                  </children>
                               </AnchorPane>
@@ -70,9 +71,6 @@
                                           <String fx:value="custom-label-1" />
                                           <String fx:value="hover-effect" />
                                        </styleClass>
-                                       <font>
-                                          <Font size="64.0" />
-                                       </font>
                                     </Label>
                                  </children>
                               </AnchorPane>
@@ -99,7 +97,11 @@
                   </SplitPane>
                   <SplitPane dividerPositions="0.3" prefHeight="160.0" prefWidth="200.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <styleClass>
+                              <String fx:value="image-1" />
+                              <String fx:value="custom-image" />
+                           </styleClass></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
@@ -109,9 +111,6 @@
                                           <String fx:value="custom-label-1" />
                                           <String fx:value="hover-effect" />
                                        </styleClass>
-                                       <font>
-                                          <Font size="64.0" />
-                                       </font>
                                     </Label>
                                  </children>
                               </AnchorPane>

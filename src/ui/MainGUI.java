@@ -4,6 +4,7 @@ import core.*;
 import interfaces.C4Constants;
 import static interfaces.C4Constants.*;
 import ai.*;
+import controllers.StartMenuController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,11 +50,24 @@ public class MainGUI extends Application implements C4Constants{
             throw new RuntimeException("FXML file not found: " + fxmlFile);
         }
 
-        Parent root = FXMLLoader.load(fxmlLocation);
-        
+        FXMLLoader loader = new FXMLLoader(fxmlLocation);
+        Parent root = loader.load();
+
+        StartMenuController controller = loader.getController();
+        controller.setStage(stage);
+
         Scene scene = new Scene(root);
         stage.setTitle("Test Application");
         stage.setScene(scene);
+
+         // Set the minimum width and height for the stage
+        stage.setMinWidth(600);
+        stage.setMinHeight(400);
+ 
+         // Set an initial size for the stage
+        stage.setWidth(1024);
+        stage.setHeight(768);
+
         stage.show();
         
         // test.runTest2();

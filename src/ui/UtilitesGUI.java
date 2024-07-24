@@ -5,7 +5,9 @@ import javax.management.RuntimeErrorException;
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -24,6 +26,7 @@ public class UtilitesGUI {
     }
 
     /**
+     * Sets font style of label.
      * 
      * @param label
      */
@@ -32,6 +35,7 @@ public class UtilitesGUI {
     }
 
     /**
+     * Sets font style of button.
      * 
      * @param btn
      */
@@ -40,22 +44,25 @@ public class UtilitesGUI {
     }
 
     /**
+     * Sets initial size of label.
      * 
-     * @param btn
+     * @param label
      */
     public static void setInitialSize(Label label, double size) {
         label.setFont(new Font(arcade.getName(), size));
     }
 
     /**
+     * Sets initial size of button.
      * 
      * @param btn
      */
     public static void setInitialSize(Button btn, double size) {
-        btn.setStyle(String.format("-fx-font-size: %.2fpx;", size));
+        btn.setFont(new Font(arcade.getName(), size));
     }
     
     /**
+     * Binds labels to stage to make them responsive while also preserving custom font.
      * 
      * @param label
      * @param stage
@@ -63,9 +70,35 @@ public class UtilitesGUI {
      * @param maxSize
      */
     public static void makeLabelResponsive(Label label, Stage stage, double minSize, double maxSize) {
-        label.styleProperty().bind(Bindings.createStringBinding(() -> {
+        label.fontProperty().bind(Bindings.createObjectBinding(() -> {
             double fontSize = Math.max(minSize, Math.min(maxSize, stage.getWidth() / 20));
-            return String.format("-fx-font-size: %.2fpx;", fontSize);
+            return new Font(arcade.getName(), fontSize);
         }, stage.widthProperty()));
     }
+
+    /**
+     * Binds 
+     * 
+     * @param view
+     * @param rootAnchor
+     * @param imagePath
+     */
+    // public static void makeImageResponsive(ImageView view, Stage stage, AnchorPane rootAnchor, String imagePath) {
+    //     Image image = new Image(UtilitesGUI.class.getResourceAsStream(imagePath));
+    //     view.setImage(image);
+    //     view.setPreserveRatio(true);
+
+    //     view.fitWidthProperty().bind(rootAnchor.widthProperty());
+    //     view.fitHeightProperty().bind(rootAnchor.heightProperty());
+
+    //     // view.fitWidthProperty().bind(Bindings.createDoubleBinding(() -> {
+    //     //     double widthRatio = stage.getWidth() / rootAnchor.getPrefWidth();
+    //     //     return rootAnchor.getPrefWidth() * widthRatio;
+    //     // }, stage.widthProperty()));
+
+    //     // view.fitHeightProperty().bind(Bindings.createDoubleBinding(() -> {
+    //     // double heightRatio = stage.getHeight() / rootAnchor.getPrefHeight();
+    //     // return rootAnchor.getPrefHeight() * heightRatio;
+    //     // }, stage.heightProperty()));
+    // }
 }

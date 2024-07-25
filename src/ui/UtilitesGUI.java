@@ -12,35 +12,36 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class UtilitesGUI {
-    private static Font arcade;
+    private static Font font1;
+    private static Font font2;
 
     /**
      * Static block to load fonts when class is first accessed.
      */
     static {
-        arcade = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/resources/fonts/AerologicaRegular-K7day.ttf"), 20);
+        font1 = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/resources/fonts/AerologicaRegular-K7day.ttf"), 20);
+        font2 = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/resources/fonts/MarioWorldPixelColor-3zBwX.ttf"), 20); 
 
-        if (arcade == null) {
+        if (font1 == null) {
+            throw new RuntimeException("Custom font 'AerologicaRegular-K7day.ttf' not loaded!");
+        } else if (font2 == null) {
             throw new RuntimeException("Custom font 'AerologicaRegular-K7day.ttf' not loaded!");
         }
     }
 
     /**
-     * Sets font style of label.
      * 
-     * @param label
+     * @param num
+     * @return
      */
-    public static void applyFont(Label label) {
-        label.setFont(arcade);
-    }
-
-    /**
-     * Sets font style of button.
-     * 
-     * @param btn
-     */
-    public static void applyFont(Button btn) {
-        btn.setFont(arcade);
+    public static Font getFont(int num) {
+        if (num == 1) {
+            return font1;
+        } else if (num == 2) {
+            return font2;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -48,8 +49,9 @@ public class UtilitesGUI {
      * 
      * @param label
      */
-    public static void setInitialSize(Label label, double size) {
-        label.setFont(new Font(arcade.getName(), size));
+    public static void setInitialSize(Label label, double size, int fontNum) {
+        Font font = getFont(fontNum);
+        label.setFont(new Font(font.getName(), size));
     }
 
     /**
@@ -57,8 +59,9 @@ public class UtilitesGUI {
      * 
      * @param btn
      */
-    public static void setInitialSize(Button btn, double size) {
-        btn.setFont(new Font(arcade.getName(), size));
+    public static void setInitialSize(Button btn, double size, int fontNum) {
+        Font font = getFont(fontNum);
+        btn.setFont(new Font(font.getName(), size));
     }
     
     /**
@@ -69,11 +72,31 @@ public class UtilitesGUI {
      * @param minSize
      * @param maxSize
      */
-    public static void makeLabelResponsive(Label label, Stage stage, double minSize, double maxSize) {
+    public static void makeLabelResponsive(Label label, Stage stage, double minSize, double maxSize, int fontNum) {
+        Font font = getFont(fontNum);
         label.fontProperty().bind(Bindings.createObjectBinding(() -> {
             double fontSize = Math.max(minSize, Math.min(maxSize, stage.getWidth() / 20));
-            return new Font(arcade.getName(), fontSize);
+            return new Font(font.getName(), fontSize);
         }, stage.widthProperty()));
+    }
+
+    /**
+     * Binds buttons to stage to make them responsive while also preserving custom font.
+     * 
+     * @param button
+     * @param stage
+     * @param minSize
+     * @param maxSize
+     */
+    public static void makeButtonResponsive(Button button, Stage stage, double minSize, double maxSize, int fontNum) {
+        Font font = getFont(fontNum);
+        button.fontProperty().bind(Bindings.createObjectBinding(() -> {
+            double fontSize = Math.max(minSize, Math.min(maxSize, stage.getWidth() / 30));
+            return new Font(font.getName(), fontSize);
+        }, stage.widthProperty()));
+
+        button.prefWidthProperty().bind(stage.widthProperty().divide(6)); // Adjust width ratio as needed
+        button.prefHeightProperty().bind(stage.heightProperty().divide(10)); // Adjust height ratio as needed
     }
 
     /**

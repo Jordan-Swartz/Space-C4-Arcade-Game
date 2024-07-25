@@ -2,9 +2,15 @@
  *Contains custom CSS styling for GUI components
  */
 
+ .split-pane .split-pane-divider {
+    -fx-background-color: #ff0000; /* Set the background color of all dividers */
+    -fx-border-color: #000000; /* Set the border color of all dividers */
+    -fx-border-width: 2px; /* Set the border width of all dividers */
+    -fx-padding: 2px; /* Set the padding around all dividers */
+}
+
  .custom-button-1 {
     -fx-background-color: rgb(72, 247, 72); 
-    -fx-text-fill: rgb(5, 66, 85);
     -fx-padding: 10px 20px;
     -fx-cursor: hand;
     -fx-border-radius: 20px;
@@ -13,7 +19,18 @@
 
  .custom-label-1 {
     -fx-background-color: rgb(248, 111, 218);
-    -fx-text-fill: rgb(5, 66, 85);
+    -fx-text-fill: linear-gradient(
+        to right, 
+        rgb(12, 216, 243), 
+        orange, 
+        green, 
+        red, 
+        rgb(12, 216, 243), 
+        orange, 
+        green, 
+        red, 
+    );
+    -fx-effect: dropshadow(gaussian, black, 1, 1, 0, 0);
     -fx-border-radius: 40px;
     -fx-background-radius: 40px;
  }

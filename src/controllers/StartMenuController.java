@@ -39,16 +39,16 @@ public class StartMenuController {
      */
     public void initialize() {
         //apply fonts
-        UtilitesGUI.applyFont(titleLabel1);
-        UtilitesGUI.applyFont(titleLabel2);
-        UtilitesGUI.applyFont(titleLabel3);
-        UtilitesGUI.applyFont(startButton);
+        // UtilitesGUI.applyFont(titleLabel1);
+        // UtilitesGUI.applyFont(titleLabel2);
+        // UtilitesGUI.applyFont(titleLabel3);
+        // UtilitesGUI.applyFont(startButton);
 
         //apply size
-        UtilitesGUI.setInitialSize(titleLabel1, 50);
-        UtilitesGUI.setInitialSize(titleLabel2, 50);
-        UtilitesGUI.setInitialSize(titleLabel3, 50);
-        UtilitesGUI.setInitialSize(startButton, 20);
+        UtilitesGUI.setInitialSize(titleLabel1, 80, 2);
+        UtilitesGUI.setInitialSize(titleLabel2, 80, 2);
+        UtilitesGUI.setInitialSize(titleLabel3, 80, 2);
+        UtilitesGUI.setInitialSize(startButton, 50, 1);
     }
 
     /**
@@ -59,9 +59,10 @@ public class StartMenuController {
         this.stage = stage;
 
         //bind labels to stage
-        UtilitesGUI.makeLabelResponsive(titleLabel1, stage, 40, 100);
-        UtilitesGUI.makeLabelResponsive(titleLabel2, stage, 40, 100);
-        UtilitesGUI.makeLabelResponsive(titleLabel3, stage, 40, 100);
+        UtilitesGUI.makeLabelResponsive(titleLabel1, stage, 40, 120, 2);
+        UtilitesGUI.makeLabelResponsive(titleLabel2, stage, 40, 120, 2);
+        UtilitesGUI.makeLabelResponsive(titleLabel3, stage, 40, 120, 2);
+        UtilitesGUI.makeButtonResponsive(startButton, stage, 10, 50, 1);
 
         //bind images to stage
         // UtilitesGUI.makeImageResponsive(view, stage, rootAnchor, "/resources/images/arcadeLogo.png");

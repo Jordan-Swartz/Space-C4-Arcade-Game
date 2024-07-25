@@ -14,20 +14,26 @@ import javafx.stage.Stage;
 public class UtilitesGUI {
     private static Font font1;
     private static Font font2;
+    private static Font font3;
 
     /**
      * Static block to load fonts when class is first accessed.
      */
     static {
         font1 = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/resources/fonts/AerologicaRegular-K7day.ttf"), 20);
-        font2 = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/resources/fonts/MarioWorldPixelColor-3zBwX.ttf"), 20); 
+        font2 = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/resources/fonts/PixelGamerPersonalUse-rg61L.otf"), 20); 
+        font3 = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/resources/fonts/TechnoRaceItalic-eZRWe.otf"), 20);
 
         if (font1 == null) {
             throw new RuntimeException("Custom font 'AerologicaRegular-K7day.ttf' not loaded!");
         } else if (font2 == null) {
             throw new RuntimeException("Custom font 'AerologicaRegular-K7day.ttf' not loaded!");
+        } else if (font3 == null) {
+            throw new RuntimeException("Custom font 'AerologicaRegular-K7day.ttf' not loaded!");
         }
     }
+
+    
 
     /**
      * 
@@ -39,6 +45,8 @@ public class UtilitesGUI {
             return font1;
         } else if (num == 2) {
             return font2;
+        } else if (num == 3) {
+            return font3;
         } else {
             return null;
         }
@@ -75,7 +83,7 @@ public class UtilitesGUI {
     public static void makeLabelResponsive(Label label, Stage stage, double minSize, double maxSize, int fontNum) {
         Font font = getFont(fontNum);
         label.fontProperty().bind(Bindings.createObjectBinding(() -> {
-            double fontSize = Math.max(minSize, Math.min(maxSize, stage.getWidth() / 20));
+            double fontSize = Math.max(minSize, Math.min(maxSize, stage.getWidth() / 5));
             return new Font(font.getName(), fontSize);
         }, stage.widthProperty()));
     }

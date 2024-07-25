@@ -46,7 +46,7 @@
                            </styleClass></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="40.0">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
                                  <children>
                                     <Label fx:id="titleLabel1" alignment="CENTER" layoutX="226.0" layoutY="57.0" text="CONNECT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <styleClass>
@@ -57,6 +57,10 @@
                                  </children>
                               </AnchorPane>
                            </children>
+                           <styleClass>
+                              <String fx:value="image-3" />
+                              <String fx:value="custom-image" />
+                           </styleClass>
                         </AnchorPane>
                     </items>
                   </SplitPane>
@@ -64,7 +68,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="40.0">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
                                  <children>
                                     <Label fx:id="titleLabel2" alignment="CENTER" layoutX="226.0" layoutY="57.0" text="FOUR" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <styleClass>
@@ -75,6 +79,10 @@
                                  </children>
                               </AnchorPane>
                            </children>
+                           <styleClass>
+                              <String fx:value="image-3-mirror" />
+                              <String fx:value="custom-image" />
+                           </styleClass>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
@@ -85,7 +93,7 @@
                                  <children>
                                     <AnchorPane prefHeight="41.0" styleClass="custom-button-1">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="157.0" prefWidth="244.0" text="CLICK START TO PLAY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="startLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="157.0" prefWidth="244.0" text="CLICK START TO PLAY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets />
@@ -98,6 +106,10 @@
                                        </styleClass>
                                     </Button>
                                  </children>
+                                 <styleClass>
+                                    <String fx:value="image-4" />
+                                    <String fx:value="custom-image" />
+                                 </styleClass>
                               </VBox>
                            </children></AnchorPane>
                     </items>
@@ -111,7 +123,7 @@
                            </styleClass></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="40.0">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
                                  <children>
                                     <Label fx:id="titleLabel3" alignment="CENTER" layoutX="226.0" layoutY="57.0" text="GAME" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <styleClass>
@@ -122,6 +134,10 @@
                                  </children>
                               </AnchorPane>
                            </children>
+                           <styleClass>
+                              <String fx:value="image-3" />
+                              <String fx:value="custom-image" />
+                           </styleClass>
                         </AnchorPane>
                     </items>
                   </SplitPane>

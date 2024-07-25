@@ -4,13 +4,22 @@
 
  .split-pane .split-pane-divider {
     -fx-background-color: #ff0000; /* Set the background color of all dividers */
-    -fx-border-color: #000000; /* Set the border color of all dividers */
-    -fx-border-width: 2px; /* Set the border width of all dividers */
+    -fx-border-color: rgb(43, 172, 247); /* Set the border color of all dividers */
+    -fx-border-width: 3px; /* Set the border width of all dividers */
     -fx-padding: 2px; /* Set the padding around all dividers */
 }
 
  .custom-button-1 {
-    -fx-background-color: rgb(72, 247, 72); 
+    -fx-background-color: linear-gradient(
+        to bottom, 
+        rgb(51, 26, 97), 
+        rgb(43, 172, 247), 
+        rgb(143, 209, 240), 
+        rgb(181, 222, 255), 
+        rgb(143, 209, 240),
+        rgb(43, 172, 247), 
+        rgb(51, 26, 97), 
+    );
     -fx-padding: 10px 20px;
     -fx-cursor: hand;
     -fx-border-radius: 20px;
@@ -18,8 +27,18 @@
  }
 
  .custom-label-1 {
-    -fx-background-color: rgb(248, 111, 218);
-    -fx-text-fill: linear-gradient(
+    /* -fx-background-color: rgb(133, 220, 241); */
+    /* -fx-background-color: linear-gradient(
+        to bottom, 
+        rgb(51, 26, 97), 
+        rgb(43, 172, 247), 
+        rgb(143, 209, 240), 
+        rgb(181, 222, 255), 
+        rgb(143, 209, 240),
+        rgb(43, 172, 247), 
+        rgb(51, 26, 97), 
+    ); */
+    /* -fx-text-fill: linear-gradient(
         to right, 
         rgb(12, 216, 243), 
         orange, 
@@ -29,7 +48,37 @@
         orange, 
         green, 
         red, 
+    ); */
+    -fx-text-fill: linear-gradient(
+        to bottom, 
+        red, 
+        rgb(43, 172, 247), 
+        orange, 
+        rgb(51, 26, 97), 
+        orange, 
+        rgb(43, 172, 247), 
+        rgb(51, 26, 97), 
+        red, 
     );
+    -fx-text-fill: linear-gradient(
+        to bottom, 
+        rgb(179, 219, 243), 
+        rgb(43, 172, 247), 
+        rgba(43, 172, 247, 0.788), 
+        orange,
+        red, 
+        rgb(51, 26, 97), 
+    );
+    /* -fx-text-fill: linear-gradient(
+        to bottom, 
+        rgb(51, 26, 97), 
+        rgb(43, 172, 247), 
+        rgb(143, 209, 240), 
+        rgb(181, 222, 255), 
+        rgb(143, 209, 240),
+        rgb(43, 172, 247), 
+        rgb(51, 26, 97), 
+    ); */
     -fx-effect: dropshadow(gaussian, black, 1, 1, 0, 0);
     -fx-border-radius: 40px;
     -fx-background-radius: 40px;
@@ -41,6 +90,18 @@
 
  .image-2 {
     -fx-background-image: url("/resources/images/arcadeLogo.png");
+ }
+
+ .image-3 {
+    -fx-background-image: url("/resources/images/brickBG.png");
+ }
+
+ .image-3-mirror {
+    -fx-background-image: url("/resources/images/brickBG_mirror.png");
+ }
+
+ .image-4 {
+    -fx-background-image: url("/resources/images/flashBG1.png");
  }
 
  .custom-image {

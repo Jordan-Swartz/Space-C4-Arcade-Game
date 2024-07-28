@@ -1,7 +1,10 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -29,6 +32,9 @@ public class StartMenuController {
     private Button startButton; 
 
     @FXML
+    private Button exitButton; 
+
+    @FXML
     private Label startLabel;
 
     @FXML
@@ -41,13 +47,7 @@ public class StartMenuController {
      * 
      */
     public void initialize() {
-        //apply fonts
-        // UtilitesGUI.applyFont(titleLabel1);
-        // UtilitesGUI.applyFont(titleLabel2);
-        // UtilitesGUI.applyFont(titleLabel3);
-        // UtilitesGUI.applyFont(startButton);
-
-        //apply size
+        //apply size/fonts
         UtilitesGUI.setInitialSize(titleLabel1, 80, 3);
         UtilitesGUI.setInitialSize(titleLabel2, 80, 3);
         UtilitesGUI.setInitialSize(titleLabel3, 80, 3);
@@ -68,23 +68,44 @@ public class StartMenuController {
         UtilitesGUI.makeLabelResponsive(titleLabel3, stage, 40, 160, 3);
         UtilitesGUI.makeLabelResponsive(startLabel, stage, 5, 20, 3);
         UtilitesGUI.makeButtonResponsive(startButton, stage, 10, 50, 3);
-        
-
-        //bind images to stage
-        // UtilitesGUI.makeImageResponsive(view, stage, rootAnchor, "/resources/images/arcadeLogo.png");
 
         rootVBox.prefWidthProperty().bind(stage.widthProperty());
         rootVBox.prefHeightProperty().bind(stage.heightProperty());
-
-        // Adjust padding/margin dynamically
-        // stage.widthProperty().addListener((observable, oldValue, newValue) -> adjustPadding());
-        // adjustPadding();
     }
 
-    // private void adjustPadding() {
-    //     double stageWidth = stage.getWidth();
-    //     double leftPadding = stageWidth * 0.03; // Adjust this ratio as needed
-
-    //     rootAnchor.setPadding(new Insets(0, 0, 0, leftPadding));
+    /**
+     * 
+     */
+    // public void startGame() {
+    //      try {
+    //         Parent gameView = FXMLLoader.load(getClass().getResource("/resources/fxml/C4ModeMenu.fxml"));
+    //         Stage stage = (Stage) startButton.getScene().getWindow();
+    //         stage.setScene(new Scene(gameView));
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
     // }
+
+    @FXML
+    private void startGame() {
+        try {
+            Parent modeView = FXMLLoader.load(getClass().getResource("/resources/fxml/C4ModeMenu.fxml"));
+            Stage modeStage = new Stage();
+            modeStage.setScene(new Scene(modeView));
+            modeStage.setTitle("Select Mode");
+            modeStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 
+     */
+    @FXML
+    private void exitGame() {
+        Stage stage = (Stage) rootVBox.getScene().getWindow();
+        stage.close();
+    }
+
 }

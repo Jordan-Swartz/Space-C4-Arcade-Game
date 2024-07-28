@@ -1,12 +1,23 @@
 package controllers;
 
+import javafx.fxml.FXML;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import ui.UtilitesGUI;
+
 public class GameModeController {
-    
+    private Stage stage;
+
+    @FXML
+    private VBox rootVBox;
+
+    @FXML
+    private Label titleLabel;
 }
 
  
 
-///MAKE LABELS AND TEXT RESPONSIVE WITH CORRECT TEXT
+///MAKE LABELS AND TEXT RESPONSIVE WITH CORRECT TE
 
 
 public void initialize() {

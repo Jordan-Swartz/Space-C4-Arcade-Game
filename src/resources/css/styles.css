@@ -26,7 +26,7 @@
         rgb(43, 172, 247), 
         rgba(43, 172, 247, 0.788), 
         orange,
-        red, 
+        purple,
         rgb(51, 26, 97), 
     );
     -fx-effect: dropshadow(gaussian, black, 1, 1, 0, 0);
@@ -43,24 +43,39 @@
  }
 
  .image-3 {
-    -fx-background-image: url("/resources/images/brickBG.png");
+    -fx-background-image: url("/resources/images/grid_vertical.png");
  }
-
- .image-3-mirror {
-    -fx-background-image: url("/resources/images/brickBG_mirror.png");
- }
-
- .image-3-vertical {
-    -fx-background-image: url("/resources/images/brick_column.png");
- }
-
- .image-3-vertical-mirror {
-    -fx-background-image: url("/resources/images/brick_column.png");
- }
-
 
  .image-4 {
     -fx-background-image: url("/resources/images/flashBG1.png");
+ }
+
+ .image-5 {
+    -fx-background-image: url("/resources/images/blue_space.png");
+ }
+
+ .image-5-vertical {
+    -fx-background-image: url("/resources/images/blue_space_vertical.png");
+ }
+
+ .image-5-vertical-mirror {
+    -fx-background-image: url("/resources/images/blue_space_vertical_mirror.png");
+ }
+
+ .image-5-mirror {
+    -fx-background-image: url("/resources/images/blue_space_mirror.png");
+ }
+
+ .image-6 {
+    -fx-background-image: url("/resources/images/purple_space.png");
+ }
+
+ .image-6 {
+    -fx-background-image: url("/resources/images/black_space.png");
+ }
+
+ .image-7 {
+    -fx-background-image: url("/resources/images/black_steel_vertical.png");
  }
 
  .custom-image {

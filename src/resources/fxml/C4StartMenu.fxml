@@ -17,7 +17,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Exit Game" onAction="#exitGame"/>
+              <MenuItem mnemonicParsing="false" onAction="#exitGame" text="Exit Game" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -58,7 +58,7 @@
                               </AnchorPane>
                            </children>
                            <styleClass>
-                              <String fx:value="image-3" />
+                              <String fx:value="image-5" />
                               <String fx:value="custom-image" />
                            </styleClass>
                         </AnchorPane>
@@ -80,7 +80,7 @@
                               </AnchorPane>
                            </children>
                            <styleClass>
-                              <String fx:value="image-3-mirror" />
+                              <String fx:value="image-5" />
                               <String fx:value="custom-image" />
                            </styleClass>
                         </AnchorPane>
@@ -99,7 +99,7 @@
                                           <Insets />
                                        </VBox.margin>
                                     </AnchorPane>
-                                    <Button fx:id="startButton" alignment="CENTER" mnemonicParsing="false" text="START" onAction="#startGame">
+                                    <Button fx:id="startButton" alignment="CENTER" mnemonicParsing="false" onAction="#startGame" text="START">
                                        <styleClass>
                                           <String fx:value="custom-button-1" />
                                           <String fx:value="hover-effect" />
@@ -135,7 +135,7 @@
                               </AnchorPane>
                            </children>
                            <styleClass>
-                              <String fx:value="image-3" />
+                              <String fx:value="image-5" />
                               <String fx:value="custom-image" />
                            </styleClass>
                         </AnchorPane>

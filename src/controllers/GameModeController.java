@@ -44,6 +44,9 @@ public class GameModeController {
         //apply size/fonts
         UtilitesGUI.setInitialSize(modeLabel1, 80, 3);
         UtilitesGUI.setInitialSize(modeLabel2, 80, 3);
+        UtilitesGUI.setInitialSize(modeLabel3, 80, 3);
+        UtilitesGUI.setInitialSize(modeLabel4, 80, 3);
+        
         UtilitesGUI.setInitialSize(guiButton, 50, 1);
         UtilitesGUI.setInitialSize(consoleButton, 50, 1); 
     }
@@ -57,10 +60,10 @@ public class GameModeController {
     
         //bind labels to stage
         // UtilitesGUI.makeLabelResponsive(titleLabel1, stage, 20, 160, 3);
-        // UtilitesGUI.makeLabelResponsive(titleLabel2, stage, 40, 160, 3);
-        // UtilitesGUI.makeLabelResponsive(titleLabel3, stage, 40, 160, 3);
         UtilitesGUI.makeLabelResponsive(modeLabel1, stage, 10, 40, 3);
         UtilitesGUI.makeLabelResponsive(modeLabel2, stage, 5, 20, 3);
+        UtilitesGUI.makeLabelResponsive(modeLabel3, stage, 40, 160, 3);
+        UtilitesGUI.makeLabelResponsive(modeLabel4, stage, 40, 160, 3);
         UtilitesGUI.makeButtonResponsive(guiButton, stage, 10, 50, 3);
         UtilitesGUI.makeButtonResponsive(consoleButton, stage, 10, 50, 3);
     

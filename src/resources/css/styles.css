@@ -107,3 +107,10 @@
     -fx-padding: 10;
     -fx-background-color: #f0f0f0;
 }
+
+/* Add this to your CSS file */
+.vertical-text {
+    -fx-rotate: 90;
+    -fx-alignment: CENTER; /* Ensure the text is centered */
+    -fx-padding: 10; /* Adjust padding as needed */
+}

@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.Console;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -11,10 +13,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import ui.ConsoleUI;
 import ui.UtilitesGUI;
 
 public class StartMenuController {
     private Stage stage;
+    private ConsoleUI console;
 
     @FXML
     private VBox rootVBox;
@@ -75,47 +79,65 @@ public class StartMenuController {
 
     /**
      * 
+     * @param console
      */
-    // public void startGame() {
-    //      try {
-    //         Parent gameView = FXMLLoader.load(getClass().getResource("/resources/fxml/C4ModeMenu.fxml"));
-    //         Stage stage = (Stage) startButton.getScene().getWindow();
-    //         stage.setScene(new Scene(gameView));
-    //
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     }
-    // }
+    public void setConsole(ConsoleUI console) {
+        this.console = console;
+    }
 
-    @FXML
-    private void startGame() {
-        try {
-             // Create a new FXMLLoader instance
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/C4ModeMenu.fxml"));
-        
-        // Load the view
-        Parent modeView = loader.load();
-        
-        // Get the controller associated with the loaded view
-        GameModeController controller = loader.getController();
-        
-        // Create a new stage
-        Stage modeStage = new Stage();
-        
-        // Set the scene with the loaded view
-        modeStage.setScene(new Scene(modeView));
-        modeStage.setTitle("Select Mode");
-        
-        // Call the setStage method on the controller to pass the stage
-        controller.setStage(modeStage);
-        
-        // Show the new stage
-        modeStage.show();
+    /**
+     * 
+     */
+    public void startGame() {
+         try {
+            //Parent gameView = FXMLLoader.load(getClass().getResource("/resources/fxml/C4ModeMenu.fxml"));
 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/C4ModeMenu.fxml"));
+            Parent modeView = loader.load();
+            GameModeController controller = loader.getController();
+            
+            Stage stage = (Stage) startButton.getScene().getWindow();
+
+            stage.setScene(new Scene(modeView));
+            stage.setTitle("Select Mode");
+
+            controller.setStage(stage);
+            controller.setConsole(console);
+    
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    // @FXML
+    // private void startGame() {
+    //     try {
+    //          // Create a new FXMLLoader instance
+    //     FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/C4ModeMenu.fxml"));
+        
+    //     // Load the view
+    //     Parent modeView = loader.load();
+        
+    //     // Get the controller associated with the loaded view
+    //     GameModeController controller = loader.getController();
+        
+    //     // Create a new stage
+    //     Stage modeStage = new Stage();
+        
+    //     // Set the scene with the loaded view
+    //     modeStage.setScene(new Scene(modeView));
+    //     modeStage.setTitle("Select Mode");
+        
+    //     // Call the setStage method on the controller to pass the stage
+    //     controller.setStage(modeStage);
+        
+    //     // Show the new stage
+    //     modeStage.show();
+
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    // }
 
     /**
      * 

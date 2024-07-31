@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 
 <VBox fx:id="rootVBox" prefHeight="704.0" prefWidth="896.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameModeController">
   <children>
@@ -65,29 +64,27 @@
                         <String fx:value="custom-image" />
                      </styleClass>
                      <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                           <children>
-                              <VBox alignment="CENTER" layoutX="33.0" layoutY="172.0" prefHeight="655.0" prefWidth="154.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="C" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="E" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="N" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="N" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="O" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="C" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
+                        <AnchorPane prefHeight="99.0" prefWidth="154.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
                      </children></AnchorPane>
-                  <SplitPane dividerPositions="0.3, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                  <SplitPane dividerPositions="0.25, 0.75" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <styleClass>
                               <String fx:value="image-5-mirror" />
                               <String fx:value="custom-image" />
                            </styleClass>
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
+                                 <children>
+                                    <Label fx:id="modeLabel3" alignment="CENTER" layoutX="226.0" layoutY="57.0" prefHeight="200.0" prefWidth="200.0" text="CONNECT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <styleClass>
+                                          <String fx:value="custom-label-1" />
+                                          <String fx:value="hover-effect" />
+                                       </styleClass>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
@@ -105,12 +102,12 @@
                                     </AnchorPane>
                                     <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="30.0">
                                        <children>
-                                          <Button fx:id="guiButton" mnemonicParsing="false" text="     GUI      ">
+                                          <Button fx:id="guiButton" mnemonicParsing="false" onAction="#handleGUIClick" prefHeight="36.0" prefWidth="172.0" text="     GUI      ">
                                              <styleClass>
                                                 <String fx:value="custom-button-1" />
                                                 <String fx:value="hover-effect" />
                                              </styleClass></Button>
-                                          <Button fx:id="consoleButton" mnemonicParsing="false" text="Text Console">
+                                          <Button fx:id="consoleButton" mnemonicParsing="false" onAction="#handleTextConsoleClick" prefHeight="36.0" prefWidth="170.0" text="Text Console">
                                              <styleClass>
                                                 <String fx:value="custom-button-1" />
                                                 <String fx:value="hover-effect" />
@@ -133,6 +130,18 @@
                               <String fx:value="image-5" />
                               <String fx:value="custom-image" />
                            </styleClass>
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
+                                 <children>
+                                    <Label fx:id="modeLabel4" alignment="CENTER" layoutX="226.0" layoutY="57.0" text="FOUR" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <styleClass>
+                                          <String fx:value="custom-label-1" />
+                                          <String fx:value="hover-effect" />
+                                       </styleClass>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
                         </AnchorPane>
                     </items>
                   </SplitPane>
@@ -142,16 +151,7 @@
                         <String fx:value="custom-image" />
                      </styleClass>
                      <children>
-                        <AnchorPane prefHeight="675.0" prefWidth="174.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                           <children>
-                              <Label fx:id="modeLabel4" alignment="CENTER" layoutX="226.0" layoutY="57.0" rotate="90.0" text="FOUR" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <styleClass>
-                                    <String fx:value="custom-label-1" />
-                                    <String fx:value="hover-effect" />
-                                 </styleClass>
-                              </Label>
-                           </children>
-                        </AnchorPane>
+                        <AnchorPane prefHeight="675.0" prefWidth="174.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                      </children></AnchorPane>
               </items>
             </SplitPane>

@@ -62,10 +62,7 @@
                      <styleClass>
                         <String fx:value="image-5-vertical" />
                         <String fx:value="custom-image" />
-                     </styleClass>
-                     <children>
-                        <AnchorPane prefHeight="99.0" prefWidth="154.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
-                     </children></AnchorPane>
+                     </styleClass></AnchorPane>
                   <SplitPane dividerPositions="0.25, 0.75" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -149,10 +146,7 @@
                      <styleClass>
                         <String fx:value="image-5-vertical-mirror" />
                         <String fx:value="custom-image" />
-                     </styleClass>
-                     <children>
-                        <AnchorPane prefHeight="675.0" prefWidth="174.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-                     </children></AnchorPane>
+                     </styleClass></AnchorPane>
               </items>
             </SplitPane>
          </children>

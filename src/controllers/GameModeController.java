@@ -93,6 +93,8 @@ public class GameModeController {
         guiButton.setText("SERVER");
         consoleButton.setText("LOCAL");
 
+        UtilitesGUI.makeButtonResponsive(consoleButton, stage, 10, 50, 3);
+
         guiButton.setOnAction(e -> handleServerClick());
         consoleButton.setOnAction(e -> handleLocalClick());
     }
@@ -130,8 +132,35 @@ public class GameModeController {
     public void handleLocalClick() {
         modeLabel2.setText("SELECT YOUR OPPONENT!");
 
-        guiButton.setText("COMPUTER PLAYER");
+        UtilitesGUI.makeButtonResponsive(guiButton, stage, 5, 22.5, 3);
+        UtilitesGUI.makeButtonResponsive(consoleButton, stage, 5, 22.5, 3);
+
+        guiButton.setText("COMPUTER");
         consoleButton.setText("LOCAL PLAYER");
+
+        guiButton.setOnAction(e -> startGamePlay("COMPUTER"));
+        consoleButton.setOnAction(e -> startGamePlay("LOCAL"));
+    }
+
+    public void startGamePlay(String opponent) {
+        try {
+            // Load the FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/C4GamePlay.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setTitle("Test Window");
+
+            // Set the scene for the new stage
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            // Show the new stage
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

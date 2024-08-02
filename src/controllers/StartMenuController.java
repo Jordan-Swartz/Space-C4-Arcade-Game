@@ -2,6 +2,8 @@ package controllers;
 
 import java.io.Console;
 
+import ai.ComputerLogic;
+import core.GameLogic;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -19,6 +21,8 @@ import ui.UtilitesGUI;
 public class StartMenuController {
     private Stage stage;
     private ConsoleUI console;
+    private GameLogic logic;
+    private ComputerLogic computer;
 
     @FXML
     private VBox rootVBox;
@@ -87,6 +91,22 @@ public class StartMenuController {
 
     /**
      * 
+     * @param logic
+     */
+    public void setLogic(GameLogic logic) {
+        this.logic = logic;
+    }
+
+    /**
+     * 
+     * @param computer
+     */
+    public void setComputer(ComputerLogic computer) {
+        this.computer = computer;
+    }
+
+    /**
+     * 
      */
     public void startGame() {
          try {
@@ -103,6 +123,8 @@ public class StartMenuController {
 
             controller.setStage(stage);
             controller.setConsole(console);
+            controller.setLogic(logic);
+            controller.setComputer(computer);
     
         } catch (Exception e) {
             e.printStackTrace();

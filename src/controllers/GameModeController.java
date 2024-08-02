@@ -2,6 +2,8 @@ package controllers;
 
 import java.io.Console;
 
+import ai.ComputerLogic;
+import core.GameLogic;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +24,8 @@ import ui.UtilitesGUI;
 public class GameModeController {
     private Stage stage;
     private ConsoleUI console;
+    private GameLogic logic;
+    private ComputerLogic computer;
 
     @FXML
     private VBox rootVBox;
@@ -43,13 +47,6 @@ public class GameModeController {
 
     @FXML
     private Button consoleButton;
-
-    /**
-     * 
-     */
-    public void setConsole(ConsoleUI console) {
-        this.console = console;
-    }
 
     /**
      * 
@@ -87,6 +84,30 @@ public class GameModeController {
 
     /**
      * 
+     * @param console
+     */
+    public void setConsole(ConsoleUI console) {
+        this.console = console;
+    }
+
+    /**
+     * 
+     * @param logic
+     */
+    public void setLogic(GameLogic logic) {
+        this.logic = logic;
+    }
+
+    /**
+     * 
+     * @param computer
+     */
+    public void setComputer(ComputerLogic computer) {
+        this.computer = computer;
+    }
+
+    /**
+     * 
      */
     public void handleGUIClick() {
         modeLabel2.setText("CHOOSE YOUR GAME TYPE!");
@@ -102,11 +123,6 @@ public class GameModeController {
     /**
      * 
      */
-    // public void handleTextConsoleClick() {
-    //     stage.close();
-    //     console.startConsoleGame();
-    // }
-
     public void handleTextConsoleClick() {
     Platform.runLater(() -> {
         stage.close();

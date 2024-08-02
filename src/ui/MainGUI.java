@@ -56,6 +56,8 @@ public class MainGUI extends Application implements C4Constants{
         StartMenuController controller = loader.getController();
         controller.setStage(stage);
         controller.setConsole(console);
+        controller.setLogic(logic);
+        controller.setComputer(computer);
 
         Scene scene = new Scene(root);
         stage.setTitle("Test Application");

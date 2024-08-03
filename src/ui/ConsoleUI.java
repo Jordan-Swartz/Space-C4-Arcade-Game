@@ -105,30 +105,35 @@ public class ConsoleUI {
                 end = true;
                 displayBoard();
                 logic.gameEnd(WINNER);
+
             } else if (logic.checkForWin(Direction.VERTICAL, row, col, token)) {
                 end = true;
                 displayBoard();
                 logic.gameEnd(WINNER);
+
             } else if (logic.checkForWin(Direction.DIAGONAL_LTR, row, col, token)) {
                 end = true;
                 displayBoard();
                 logic.gameEnd(WINNER);
+
             } else if (logic.checkForWin(Direction.DIAGONAL_RTL, row, col, token)) {
                 end = true;
                 displayBoard();
                 logic.gameEnd(WINNER);
+
             } else if (logic.tieCheck()) { 
                 end = true;
                 displayBoard();
                 logic.gameEnd(DRAW);
+
             } else {
                 logic.incrementTurn();
                 logic.manageTurns();
 
-                logic.displayMatrixBoard(Direction.HORIZONTAL);
-                logic.displayMatrixBoard(Direction.VERTICAL);
-                logic.displayMatrixBoard(Direction.DIAGONAL_LTR);
-                logic.displayMatrixBoard(Direction.DIAGONAL_RTL);
+                // logic.displayMatrixBoard(Direction.HORIZONTAL);
+                // logic.displayMatrixBoard(Direction.VERTICAL);
+                // logic.displayMatrixBoard(Direction.DIAGONAL_LTR);
+                // logic.displayMatrixBoard(Direction.DIAGONAL_RTL);
             }
         }
     }

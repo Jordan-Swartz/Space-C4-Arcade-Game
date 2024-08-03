@@ -33,7 +33,6 @@
 -->
 
 <?import java.lang.String?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -98,7 +97,10 @@
                            <styleClass>
                               <String fx:value="image-5-mirror" />
                               <String fx:value="custom-image" />
-                           </styleClass></AnchorPane>
+                           </styleClass>
+                           <children>
+                              <AnchorPane fx:id="titleLabelPane" prefHeight="130.0" prefWidth="616.0" styleClass="custom-label-1" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                           </children></AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <AnchorPane fx:id="gameBoardPane" prefHeight="395.0" prefWidth="616.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
@@ -110,15 +112,7 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <AnchorPane prefHeight="130.0" prefWidth="616.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                 <children>
-                                    <Label fx:id="modeLabel4" alignment="CENTER" layoutX="226.0" layoutY="57.0" text="TEXT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <styleClass>
-                                          <String fx:value="custom-label-1" />
-                                          <String fx:value="hover-effect" />
-                                       </styleClass>
-                                    </Label>
-                                 </children>
+                              <AnchorPane fx:id="statusLabelPane" prefHeight="130.0" prefWidth="616.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                  <styleClass>
                                     <String fx:value="custom-label-1" />
                                     <String fx:value="custom-button-1" />

@@ -59,8 +59,8 @@ public class StartMenuController {
         UtilitesGUI.setInitialSize(titleLabel1, 80, 3);
         UtilitesGUI.setInitialSize(titleLabel2, 80, 3);
         UtilitesGUI.setInitialSize(titleLabel3, 80, 3);
-        UtilitesGUI.setInitialSize(startButton, 50, 1);
-        UtilitesGUI.setInitialSize(startLabel, 50, 1);
+        UtilitesGUI.setInitialSize(startButton, 50, 3);
+        UtilitesGUI.setInitialSize(startLabel, 50, 3);
     }
 
     /**

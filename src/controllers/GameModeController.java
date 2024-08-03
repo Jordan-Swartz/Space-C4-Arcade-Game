@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.Console;
+import static interfaces.C4Constants.*;
 
 import ai.ComputerLogic;
 import core.GameLogic;
@@ -58,8 +59,8 @@ public class GameModeController {
         UtilitesGUI.setInitialSize(modeLabel3, 80, 3);
         UtilitesGUI.setInitialSize(modeLabel4, 80, 3);
         
-        UtilitesGUI.setInitialSize(guiButton, 50, 1);
-        UtilitesGUI.setInitialSize(consoleButton, 50, 1); 
+        UtilitesGUI.setInitialSize(guiButton, 50, 3);
+        UtilitesGUI.setInitialSize(consoleButton, 50, 3); 
     }
     
     /**
@@ -154,15 +155,24 @@ public class GameModeController {
         guiButton.setText("COMPUTER");
         consoleButton.setText("LOCAL PLAYER");
 
-        guiButton.setOnAction(e -> startGamePlay("COMPUTER"));
-        consoleButton.setOnAction(e -> startGamePlay("LOCAL"));
+        guiButton.setOnAction(e -> startGamePlay(COMPUTER_PLAYER));
+        consoleButton.setOnAction(e -> startGamePlay(PLAYER_PLAYER));
     }
 
-    public void startGamePlay(String opponent) {
+    public void startGamePlay(int opponent) {
         try {
             // Load the FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/C4GamePlay.fxml"));
             Parent root = loader.load();
+
+            //load controller for game fxml
+            GameController controller = loader.getController();
+
+            controller.setConsole(console);
+            controller.setLogic(logic);
+            controller.setComputer(computer);
+            controller.setOpponent(opponent);
+            controller.setStage(stage);
 
             // Create a new stage
             Stage stage = new Stage();

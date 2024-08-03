@@ -175,15 +175,14 @@ public class GameModeController {
             controller.setStage(stage);
 
             // Create a new stage
-            Stage stage = new Stage();
-            stage.setTitle("Test Window");
+            // Stage stage = new Stage();
+            // stage.setTitle("Test Window");
 
             // Set the scene for the new stage
             Scene scene = new Scene(root);
             stage.setScene(scene);
-
-            // Show the new stage
             stage.show();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

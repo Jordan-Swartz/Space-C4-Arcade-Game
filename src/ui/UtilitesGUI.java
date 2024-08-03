@@ -108,29 +108,4 @@ public class UtilitesGUI {
         button.prefHeightProperty().bind(stage.heightProperty().divide(10)); // Adjust height ratio as needed
     }
 
-    /**
-     * Binds 
-     * 
-     * @param view
-     * @param rootAnchor
-     * @param imagePath
-     */
-    // public static void makeImageResponsive(ImageView view, Stage stage, AnchorPane rootAnchor, String imagePath) {
-    //     Image image = new Image(UtilitesGUI.class.getResourceAsStream(imagePath));
-    //     view.setImage(image);
-    //     view.setPreserveRatio(true);
-
-    //     view.fitWidthProperty().bind(rootAnchor.widthProperty());
-    //     view.fitHeightProperty().bind(rootAnchor.heightProperty());
-
-    //     // view.fitWidthProperty().bind(Bindings.createDoubleBinding(() -> {
-    //     //     double widthRatio = stage.getWidth() / rootAnchor.getPrefWidth();
-    //     //     return rootAnchor.getPrefWidth() * widthRatio;
-    //     // }, stage.widthProperty()));
-
-    //     // view.fitHeightProperty().bind(Bindings.createDoubleBinding(() -> {
-    //     // double heightRatio = stage.getHeight() / rootAnchor.getPrefHeight();
-    //     // return rootAnchor.getPrefHeight() * heightRatio;
-    //     // }, stage.heightProperty()));
-    // }
 }

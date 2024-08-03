@@ -7,6 +7,8 @@ import ai.Graph.Move;
 import core.GameLogic;
 import core.GameLogic.Direction;
 import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -33,6 +35,7 @@ public class GameController {
     private boolean end;
   
     private ImageView[][] imageViewArray;
+    private GridPane grid;
     private int opponent;
     
     @FXML
@@ -145,7 +148,7 @@ public class GameController {
      */
     public StackPane createGameBoardGrid() {
         //create grid for game board
-        GridPane grid = new GridPane();
+        grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         imageViewArray = new ImageView[ROWS][COLUMNS];
 
@@ -203,52 +206,61 @@ public class GameController {
 
     /**
      * 
-     * @param column
+     * @param col
      */
-    public void handleCircleClick(int column) {
+    public void handleCircleClick(int col) {
         if (end) {
             return;
         }
 
         char token = logic.getCurrentToken();
-        int playerNumber = logic.getCurrentPlayer();
+        int playerNum = logic.getCurrentPlayer();
 
         if (opponent == PLAYER_PLAYER) {
-            if (!performPlayerMove(column, playerNumber, token)) {
+            if (!performPlayerMove(col, playerNum, token)) {
                 return;
             }
 
         } else if (opponent == COMPUTER_PLAYER) {       
-            if (!performPlayerMove(column, playerNumber, token)) {
+            if (!performPlayerMove(col, playerNum, token)) {
                 return;
             }
             
-            if (!end) {
-                token = logic.getCurrentToken();
-                playerNumber = logic.getCurrentPlayer();
-                performComputerMove(playerNumber, token);
-            }
+            PauseTransition pause = new PauseTransition(Duration.seconds(1.5));
+            pause.setOnFinished(event -> {
+                if (!end) {
+                    char token_c = logic.getCurrentToken();
+                    int playerNum_c = logic.getCurrentPlayer();
+                    performComputerMove(playerNum_c, token_c);
+                }
+            });
+        
+            pause.play();
         }
     }
 
     /**
      * 
-     * @param column
-     * @param playerNumber
+     * @param col
+     * @param playerNum
      * @param token
      * @return
      */
-    public boolean performPlayerMove(int column, int playerNumber, char token) {
-        int row = logic.findRow(column);
+    public boolean performPlayerMove(int col, int playerNum, char token) {
+        int row = logic.findRow(col);
             
         if (row != -1) {
-            logic.applyMove(row, column, token);
-            updateGUIBoard(row, column, playerNumber, true);
-            checkForGameEnd(row, column, playerNumber, token);
+            logic.applyMove(row, col, token);
+            animateTokenDrop(row, col, playerNum, token);
+            PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+            pause.setOnFinished(event2 -> {
+                checkForGameEnd(row, col, playerNum, token);
+            });
+            pause.play();
             return true;
 
         } else {
-            updateGUIBoard(0, 0, playerNumber, false);
+            updateGUIBoard(0, 0, playerNum, false);
             return false;       
         }
 
@@ -256,21 +268,26 @@ public class GameController {
 
     /**
      * 
-     * @param playerNumber
+     * @param playerNum
      * @param token
      */
-    public void performComputerMove(int playerNumber, char token) {
+    public void performComputerMove(int playerNum, char token) {
         statusLabel.setText("Computer Thinking...");
-        PauseTransition pause = new PauseTransition(Duration.seconds(2));
+        PauseTransition pause = new PauseTransition(Duration.seconds(1));
 
         pause.setOnFinished(event -> {
             Move computerMove = computer.getComputerMove();
             int row = computerMove.getRow();
-            int column = computerMove.getColumn();
+            int col = computerMove.getColumn();
     
-            logic.applyMove(row, column, token);
-            updateGUIBoard(row, column, playerNumber, true);
-            checkForGameEnd(row, column, playerNumber, token);
+            logic.applyMove(row, col, token);
+            animateTokenDrop(row, col, playerNum, token);
+
+            PauseTransition pause2 = new PauseTransition(Duration.seconds(0.5));
+            pause2.setOnFinished(event2 -> {
+                checkForGameEnd(row, col, playerNum, token);
+            });
+            pause2.play();
         });
 
         pause.play();
@@ -285,17 +302,13 @@ public class GameController {
      */
     public void updateGUIBoard(int row, int col, int playerNum, boolean apply) {
         if (apply) {
-            ImageView innerSlot = imageViewArray[row][col];
             String labelText = "";
 
             if (playerNum == PLAYER1) {
-                innerSlot.setImage(player1Token);
                 labelText = String.format("Player %d chose column %d and row %d!", playerNum, col + 1, row + 1);
                 statusLabel.setText(labelText);
 
             } else if (playerNum == PLAYER2) {
-                innerSlot.setImage(player2Token);
-
                 if (opponent == COMPUTER_PLAYER) {
                     labelText = String.format("Computer chose column %d and row %d!", col + 1, row + 1);
                 } else {
@@ -303,11 +316,37 @@ public class GameController {
                 }
 
                 statusLabel.setText(labelText);
-
             }
         } else {
             statusLabel.setText("Column Full! Please choose again!");
         }
+        
+    }
+
+    public void animateTokenDrop(int row, int col, int playerNum, char token) {
+        final Image tokenImage = (playerNum == PLAYER1) ? player1Token : player2Token;
+
+        ImageView topView = new ImageView(tokenImage);
+        topView.setFitWidth(75);
+        topView.setFitHeight(75);
+    
+        //temp cell for animation
+        StackPane cell = new StackPane(topView);
+        GridPane.setColumnIndex(cell, col);
+        GridPane.setRowIndex(cell, 0); 
+    
+        TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), topView);
+        transition.setFromY(-cell.getHeight() * (ROWS - row));
+        transition.setOnFinished(event -> {
+            //remove temp cell and place 
+            grid.getChildren().remove(cell); // Remove the temporary cell
+            ImageView innerSlot = imageViewArray[row][col];
+            innerSlot.setImage(tokenImage); // Update the actual game board
+            updateGUIBoard(row, col, playerNum, true); 
+        });
+    
+        grid.getChildren().add(cell);
+        transition.play(); // Play the animation
         
     }
 
@@ -317,35 +356,35 @@ public class GameController {
      * @param col
      * @param token
      */
-    public void checkForGameEnd(int row, int col, int playerNumber, char token) {
+    public void checkForGameEnd(int row, int col, int playerNum, char token) {
         if (logic.checkForWin(Direction.HORIZONTAL, row, col, token)) {
             end = true;
             logic.gameEnd(WINNER);
-            gameEnd(WINNER, playerNumber);
+            gameEnd(WINNER, playerNum);
             console.displayBoard();
 
         } else if (logic.checkForWin(Direction.VERTICAL, row, col, token)) {
             end = true;
             logic.gameEnd(WINNER);
-            gameEnd(WINNER, playerNumber);
+            gameEnd(WINNER, playerNum);
             console.displayBoard();
 
         } else if (logic.checkForWin(Direction.DIAGONAL_LTR, row, col, token)) {
             end = true;
             logic.gameEnd(WINNER);
-            gameEnd(WINNER, playerNumber);
+            gameEnd(WINNER, playerNum);
             console.displayBoard();
 
         } else if (logic.checkForWin(Direction.DIAGONAL_RTL, row, col, token)) {
             end = true;
             logic.gameEnd(WINNER);
-            gameEnd(WINNER, playerNumber);
+            gameEnd(WINNER, playerNum);
             console.displayBoard();
 
         } else if (logic.tieCheck()) { 
             end = true;
             logic.gameEnd(DRAW);
-            gameEnd(DRAW, playerNumber);
+            gameEnd(DRAW, playerNum);
             console.displayBoard();
 
         } else {
@@ -363,8 +402,13 @@ public class GameController {
                 labelText = String.format("Winner! Player %s got four in a row!", playerNum);
                 statusLabel.setText(labelText);
             } else if (opponent == COMPUTER_PLAYER) {
-                labelText = String.format("Winner! Computer got four in a row!");
-                statusLabel.setText(labelText);
+                if (playerNum == PLAYER1) {
+                    labelText = String.format("Winner! Player %s got four in a row!", playerNum);
+                    statusLabel.setText(labelText);
+                } else {
+                    labelText = String.format("Winner! Computer got four in a row!");
+                    statusLabel.setText(labelText);
+                }
             }
 
         } else if (condition == DRAW) {
@@ -373,6 +417,5 @@ public class GameController {
         }
 
     }
-
 
 }

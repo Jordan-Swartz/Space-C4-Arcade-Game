@@ -8,9 +8,9 @@ package js_game.ai;
  */
 
 import java.util.*;
-import core.GameLogic;
-import core.TokenCounter;
-import core.TokenCounter.TokenInfo;
+import js_game.core.GameLogic;
+import js_game.core.TokenCounter;
+import js_game.core.TokenCounter.TokenInfo;
 
 public class Graph {
 

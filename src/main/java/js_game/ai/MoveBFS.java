@@ -7,12 +7,12 @@ package js_game.ai;
  * @version 1.0   
  */
 
-import static interfaces.C4Constants.COLUMNS;
+import static js_game.interfaces.C4Constants.COLUMNS;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-import ai.Graph.Move;
+import js_game.ai.Graph.Move;
 
 public class MoveBFS {
     private Graph graph;

@@ -2,8 +2,8 @@ package js_game.controllers;
 
 import java.io.Console;
 
-import ai.ComputerLogic;
-import core.GameLogic;
+import js_game.ai.ComputerLogic;
+import js_game.core.GameLogic;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -15,8 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import ui.ConsoleUI;
-import ui.UtilitesGUI;
+import js_game.ui.ConsoleUI;
+import js_game.ui.UtilitesGUI;
 
 public class StartMenuController {
     private Stage stage;
@@ -112,7 +112,7 @@ public class StartMenuController {
          try {
             //Parent gameView = FXMLLoader.load(getClass().getResource("/resources/fxml/C4ModeMenu.fxml"));
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/C4ModeMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/C4ModeMenu.fxml"));
             Parent modeView = loader.load();
             GameModeController controller = loader.getController();
             

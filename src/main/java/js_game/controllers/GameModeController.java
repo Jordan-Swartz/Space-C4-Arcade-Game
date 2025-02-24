@@ -1,10 +1,10 @@
 package js_game.controllers;
 
 import java.io.Console;
-import static interfaces.C4Constants.*;
+import static js_game.interfaces.C4Constants.*;
 
-import ai.ComputerLogic;
-import core.GameLogic;
+import js_game.ai.ComputerLogic;
+import js_game.core.GameLogic;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +19,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import ui.ConsoleUI;
-import ui.UtilitesGUI;
+import js_game.ui.ConsoleUI;
+import js_game.ui.UtilitesGUI;
 
 public class GameModeController {
     private Stage stage;
@@ -162,7 +162,7 @@ public class GameModeController {
     public void startGamePlay(int opponent) {
         try {
             // Load the FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/C4GamePlay.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/C4GamePlay.fxml"));
             Parent root = loader.load();
 
             //load controller for game fxml

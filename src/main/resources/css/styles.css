@@ -35,47 +35,47 @@
  }
 
  .image-1 {
-    -fx-background-image: url("/resources/images/arcadeBG.png");
+    -fx-background-image: url("/images/arcadeBG.png");
  }
 
  .image-2 {
-    -fx-background-image: url("/resources/images/arcadeLogo.png");
+    -fx-background-image: url("/images/arcadeLogo.png");
  }
 
  .image-3 {
-    -fx-background-image: url("/resources/images/grid_vertical.png");
+    -fx-background-image: url("/images/grid_vertical.png");
  }
 
  .image-4 {
-    -fx-background-image: url("/resources/images/flashBG1.png");
+    -fx-background-image: url("/images/flashBG1.png");
  }
 
  .image-5 {
-    -fx-background-image: url("/resources/images/blue_space.png");
+    -fx-background-image: url("/images/blue_space.png");
  }
 
  .image-5-vertical {
-    -fx-background-image: url("/resources/images/blue_space_vertical.png");
+    -fx-background-image: url("/images/blue_space_vertical.png");
  }
 
  .image-5-vertical-mirror {
-    -fx-background-image: url("/resources/images/blue_space_vertical_mirror.png");
+    -fx-background-image: url("/images/blue_space_vertical_mirror.png");
  }
 
  .image-5-mirror {
-    -fx-background-image: url("/resources/images/blue_space_mirror.png");
+    -fx-background-image: url("/images/blue_space_mirror.png");
  }
 
  .image-6 {
-    -fx-background-image: url("/resources/images/purple_space.png");
+    -fx-background-image: url("/images/purple_space.png");
  }
 
  .image-6 {
-    -fx-background-image: url("/resources/images/black_space.png");
+    -fx-background-image: url("/images/black_space.png");
  }
 
  .image-7 {
-    -fx-background-image: url("/resources/images/black_steel_vertical.png");
+    -fx-background-image: url("/images/black_steel_vertical.png");
  }
 
  .custom-image {

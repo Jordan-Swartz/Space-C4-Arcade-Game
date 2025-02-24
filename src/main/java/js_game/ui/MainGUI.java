@@ -1,10 +1,6 @@
 package js_game.ui;
 
-import core.*;
-import interfaces.C4Constants;
-import static interfaces.C4Constants.*;
-import ai.*;
-import controllers.StartMenuController;
+import js_game.controllers.StartMenuController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -14,12 +10,18 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.*;
 import javafx.stage.*;
-import test.Test;
+import js_game.ai.ComputerLogic;
+import js_game.ai.Graph;
+import js_game.ai.MoveBFS;
+import js_game.core.GameLogic;
+import js_game.core.TokenCounter;
+//import test.Test;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import js_game.interfaces.C4Constants;
 
-public class MainGUI extends Application implements C4Constants{
+public class MainGUI extends Application implements C4Constants {
 
      /**
 	 * Entry point into the program.
@@ -40,10 +42,10 @@ public class MainGUI extends Application implements C4Constants{
         MoveBFS bfs = new MoveBFS(graph, random);
         ComputerLogic computer = new ComputerLogic(logic, bfs);
         ConsoleUI console = new ConsoleUI(logic, computer);
-        Test test = new Test(console, logic);
+        //Test test = new Test(console, logic);
 
         //
-        String fxmlFile = "/resources/fxml/C4StartMenu.fxml";
+        String fxmlFile = "/fxml/C4StartMenu.fxml";
         URL fxmlLocation = getClass().getResource(fxmlFile);
 
         if (fxmlLocation == null) {

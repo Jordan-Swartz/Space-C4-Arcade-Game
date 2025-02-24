@@ -7,10 +7,10 @@ package js_game.core;
  * @version 1.0
  */
 
-import static interfaces.C4Constants.*;
+import static js_game.interfaces.C4Constants.*;
 import java.util.LinkedList;
 import java.util.Scanner;
-import ai.Graph.Move;
+import js_game.ai.Graph.Move;
 import js_game.core.TokenCounter.*;
 
 public class GameLogic {

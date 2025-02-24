@@ -1,11 +1,11 @@
 package js_game.controllers;
 
-import static interfaces.C4Constants.*;
+import static js_game.interfaces.C4Constants.*;
 
-import ai.ComputerLogic;
-import ai.Graph.Move;
-import core.GameLogic;
-import core.GameLogic.Direction;
+import js_game.ai.ComputerLogic;
+import js_game.ai.Graph.Move;
+import js_game.core.GameLogic;
+import js_game.core.GameLogic.Direction;
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
@@ -20,8 +20,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import ui.ConsoleUI;
-import ui.UtilitesGUI;
+import js_game.ui.ConsoleUI;
+import js_game.ui.UtilitesGUI;
 
 public class GameController {
     private Stage stage;
@@ -53,8 +53,8 @@ public class GameController {
     @FXML
     public void initialize() {
         //initialize token images
-        player1Token = new Image("/resources/images/red_token.png");
-        player2Token = new Image("/resources/images/purple_token.png");
+        player1Token = new Image("/images/red_token.png");
+        player2Token = new Image("/images/purple_token.png");
 
         //create titleLabel
         titleLabel = new Label("CONNECT FOUR GAME");
@@ -152,9 +152,9 @@ public class GameController {
         grid.setAlignment(Pos.CENTER);
         imageViewArray = new ImageView[ROWS][COLUMNS];
 
-        Image emptySlot = new Image("/resources/images/empty_slot.png");
-        Image emptySlotInner = new Image("/resources/images/empty_slot_inner.png");
-        Image backgroundImage = new Image("/resources/images/black_space.png"); 
+        Image emptySlot = new Image("/images/empty_slot.png");
+        Image emptySlotInner = new Image("/images/empty_slot_inner.png");
+        Image backgroundImage = new Image("/images/black_space.png");
 
         double cellSize = 90;
 

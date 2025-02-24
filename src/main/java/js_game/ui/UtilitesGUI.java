@@ -21,9 +21,9 @@ public class UtilitesGUI {
      * Static block to load fonts when class is first accessed.
      */
     static {
-        font1 = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/resources/fonts/AerologicaRegular-K7day.ttf"), 20);
-        font2 = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/resources/fonts/PixelGamerPersonalUse-rg61L.otf"), 20); 
-        font3 = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/resources/fonts/TechnoRaceItalic-eZRWe.otf"), 20);
+        font1 = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/fonts/AerologicaRegular-K7day.ttf"), 20);
+        font2 = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/fonts/PixelGamerPersonalUse-rg61L.otf"), 20);
+        font3 = Font.loadFont(UtilitesGUI.class.getResourceAsStream("/fonts/TechnoRaceItalic-eZRWe.otf"), 20);
 
         if (font1 == null) {
             throw new RuntimeException("Custom font 'AerologicaRegular-K7day.ttf' not loaded!");

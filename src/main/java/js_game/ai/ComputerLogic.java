@@ -7,8 +7,8 @@ package js_game.ai;
  * @version 1.0
  */
 
-import ai.Graph.Move;
-import core.*;
+import js_game.ai.Graph.Move;
+import js_game.core.*;
 
 public class ComputerLogic {
     private GameLogic logic;

@@ -8,8 +8,8 @@ package js_game.core;
  * @version 1.0   
  */
 
-import static interfaces.C4Constants.*;
-import core.GameLogic.Direction;
+import static js_game.interfaces.C4Constants.*;
+import js_game.core.GameLogic.Direction;
 
 public class TokenCounter {
 

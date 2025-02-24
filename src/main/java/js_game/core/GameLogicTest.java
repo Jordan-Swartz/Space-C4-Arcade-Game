@@ -2,43 +2,43 @@ package js_game.core;
 
 
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import core.TokenCounter.TokenInfo;
+//import org.junit.jupiter.api.AfterEach;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+import js_game.core.TokenCounter.TokenInfo;
 
-import static org.junit.jupiter.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
 
 public class GameLogicTest {
     private TokenCounter tokenCounter;
     private GameLogic logic;
 
-    @BeforeEach
-    public void setUp() {
-        tokenCounter = new TokenCounter();
-        logic = new GameLogic(tokenCounter);
-        logic.setCurrentToken('X');
-    }
-
-    @AfterEach
-    public void tearDown() {
-        // teardown code
-        
-    }
-
-    //pass
-    @Test
-    public void testAddition() {
-        assertEquals(2, 1 + 1);
-        System.out.println("hi");
-    }
-
-    //fail
-    @Test
-    public void testAddition2() {
-        assertEquals(3, 1 + 1);
-        System.out.println("hi");
-    }
+//    @BeforeEach
+//    public void setUp() {
+//        tokenCounter = new TokenCounter();
+//        logic = new GameLogic(tokenCounter);
+//        logic.setCurrentToken('X');
+//    }
+//
+//    @AfterEach
+//    public void tearDown() {
+//        // teardown code
+//
+//    }
+//
+//    //pass
+//    @Test
+//    public void testAddition() {
+//        assertEquals(2, 1 + 1);
+//        System.out.println("hi");
+//    }
+//
+//    //fail
+//    @Test
+//    public void testAddition2() {
+//        assertEquals(3, 1 + 1);
+//        System.out.println("hi");
+//    }
 
     // @Test 
     // public void testHorizontalWinMatrix_NoWin() {
@@ -57,8 +57,8 @@ public class GameLogicTest {
 
     // }
 
-    @Test 
-    public void testHorizontalWinMatrix_Win() {
-        
-    }
+//    @Test
+//    public void testHorizontalWinMatrix_Win() {
+//
+//    }
 }

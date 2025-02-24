@@ -1,11 +1,11 @@
 package js_game.ui;
 
-import core.GameLogic;
-import core.GameLogic.Direction;
-import ai.ComputerLogic;
-import ai.Graph.Move;
+import js_game.core.GameLogic;
+import js_game.core.GameLogic.Direction;
+import js_game.ai.ComputerLogic;
+import js_game.ai.Graph.Move;
 
-import static interfaces.C4Constants.*;
+import static js_game.interfaces.C4Constants.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;

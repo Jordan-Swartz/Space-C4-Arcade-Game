@@ -1,5 +1,15 @@
 package js_game.ui;
 
+/**
+ * The ConsoleUI class provides a text-based user interface for the Connect Four game.
+ * This class manages user input, displays the game board, and controls game flow
+ * for both Player vs. Player and Player vs. Computer modes.
+ *
+ *
+ * @author Jordan Swartz
+ * @version 1.0
+ */
+
 import js_game.core.GameLogic;
 import js_game.core.GameLogic.Direction;
 import js_game.ai.ComputerLogic;
@@ -24,13 +34,13 @@ public class ConsoleUI {
     }
 
     /**
-     * Starts the selected console gamemode. 
+     * Starts the selected console game-mode.
      */
     public void startConsoleGame() {
         //call menu
         displayMenu();
 
-        //collect gamemode input
+        //collect game-mode input
         int choice = logic.getInput(START_INPUT);
 
         if (choice == PLAYER_PLAYER) {
@@ -43,7 +53,7 @@ public class ConsoleUI {
     /**
      * Controls the game flow for text console UI.
      * 
-     * @param gameMode
+     * @param gameMode The selected game mode (either PLAYER_PLAYER or COMPUTER_PLAYER).
      */
     public void consoleGameFlow(int gameMode) {
         boolean end = false;

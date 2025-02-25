@@ -1,5 +1,15 @@
 package js_game.ui;
 
+/**
+ * The MainGUI class serves as the entry point for the graphical user interface (GUI)
+ * of the Connect Four game.
+ * This class initializes all necessary game components, loads the FXML layout for the
+ * start menu, and sets up the primary JavaFX Stage.
+ *
+ * @author Jordan Swartz
+ * @version 1.0
+ */
+
 import js_game.controllers.StartMenuController;
 
 import java.io.IOException;
@@ -32,6 +42,21 @@ public class MainGUI extends Application implements C4Constants {
         launch(args);
     }
 
+    /**
+     * Starts the JavaFX application and initializes the game environment.
+     * <p>
+     * This method performs the following:
+     * <ul>
+     * <li>Creates core game objects, including GameLogic, TokenCounter, and AI components.</li>
+     * <li>Loads the FXML file for the start menu interface.</li>
+     * <li>Sets up the JavaFX Stage and scene.</li>
+     * <li>Passes necessary objects to the start menu controller.</li>
+     * </ul>
+     * </p>
+     *
+     * @param stage The primary JavaFX Stage that displays the GUI.
+     * @throws IOException If there is an issue loading the FXML file.
+     */
     @Override
     public void start(Stage stage) throws IOException {
         //object instantiation
@@ -44,7 +69,6 @@ public class MainGUI extends Application implements C4Constants {
         ConsoleUI console = new ConsoleUI(logic, computer);
         //Test test = new Test(console, logic);
 
-        //
         String fxmlFile = "/fxml/C4StartMenu.fxml";
         URL fxmlLocation = getClass().getResource(fxmlFile);
 
@@ -65,17 +89,15 @@ public class MainGUI extends Application implements C4Constants {
         stage.setTitle("Test Application");
         stage.setScene(scene);
 
-         // Set the minimum width and height for the stage
+        //set the minimum width and height for the stage
         stage.setMinWidth(600);
         stage.setMinHeight(400);
  
-         // Set an initial size for the stage
+        //set an initial size for the stage
         stage.setWidth(1024);
         stage.setHeight(768);
 
         stage.show();
-        
-        // test.runTest2();
     }
 
 }

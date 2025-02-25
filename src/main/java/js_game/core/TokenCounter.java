@@ -36,6 +36,8 @@ public class TokenCounter {
 
         /**
          * Mutator method that sets the index-object's token.
+         *
+         * @param token The token to update.
          */
         public void setToken(char token) {
             this.token = token;
@@ -43,6 +45,8 @@ public class TokenCounter {
 
         /**
          * Mutator method that sets the index-object's count.
+         *
+         * @param count The count to open.
          */
         public void setCount(int count) {
             this.count = count;

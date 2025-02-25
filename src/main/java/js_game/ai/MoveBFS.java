@@ -1,8 +1,9 @@
 package js_game.ai;
 
 /**
- * MoveBFS contains the BFS-like algorithm to find the best computer move. 
- * 
+ * The MoveBFS class implements a BFS-like algorithm to determine the best move
+ * for the computer in a Connect Four game.
+ *
  * @author Jordan Swartz
  * @version 1.0   
  */
@@ -25,16 +26,21 @@ public class MoveBFS {
 
     /**
      * Runs a BFS-like algorithm to find the best computer move.
-     * 
-     * @param start
-     * @param token
-     * @return bestMove
+     *
+     * This method evaluates each valid move, simulates it, and calculates its
+     * potential value. The best move is determined based on the highest move count.
+     * If multiple moves have the same count, the center column is prioritized.
+     *
+     * @param start The starting position for the BFS-like algorithm (not used in the current logic).
+     * @param token The token representing the computer's piece ('X' or 'O').
+     * @return A Move object representing the best move for the computer.
      */
     public Move runMoveBFS(int start, char token) {
         Iterator<Move> validMoves = graph.getValidMoves().iterator();
         ArrayList<Move> bestMoves = new ArrayList<>(); 
         Move bestMove = new Move(-1, -1, -1);
 
+        //evaluate each valid move
         while (validMoves.hasNext()) {
             //grab move data
             Move move = validMoves.next();
@@ -44,7 +50,7 @@ public class MoveBFS {
             //simulate move
             graph.simulateMove(row, column, token);
 
-            //find best matrix count for that move
+            //find the best matrix count for that move
             int moveCount = graph.evaluateMove(row, column, token);
 
             //win found

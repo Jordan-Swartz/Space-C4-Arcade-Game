@@ -2,6 +2,7 @@ package js_game.core;
 
 /**
  * GameLogic defines and implements the methods for the core logic of the game.
+ * It manages player turns, board updates, win conditions, and user inputs.
  * 
  * @author Jordan Swartz
  * @version 1.0
@@ -38,7 +39,7 @@ public class GameLogic {
     /**
      * Accessor method that returns the current game board instance.
      * 
-     * @return 2D array of chars: board
+     * @return 2D array of chars.
      */
     public char[][] getBoard() {
         return board;
@@ -47,7 +48,7 @@ public class GameLogic {
     /**
      * Accessor method that returns the current player's number.
      * 
-     * @return currentPlayer 
+     * @return The current-player number (1 or 2)
      */
     public int getCurrentPlayer() {
         return currentPlayer;
@@ -56,7 +57,7 @@ public class GameLogic {
     /**
      * Accessor method that returns the current token.
      * 
-     * @return currentToken
+     * @return The current-player token (X or O)
      */
     public char getCurrentToken() {
         return currentToken;
@@ -65,7 +66,7 @@ public class GameLogic {
     /**
      * Accessor method that returns the non-current token.
      * 
-     * @return currentToken
+     * @return The other-player token (X or O)
      */
     public char getOtherToken() {
         return otherToken;
@@ -74,7 +75,7 @@ public class GameLogic {
     /**
      * Accessor method that returns the move of the previous turn.
      * 
-     * @return previousMove
+     * @return A Move object representing the previous move.
      */
     public Move getPreviousMove() {
         return previousMove;
@@ -83,7 +84,7 @@ public class GameLogic {
     /**
      * Mutator method that sets the current token.
      * 
-     * @param currentToken
+     * @param currentToken The current-player token (X or O)
      */
     public void setCurrentToken(char currentToken) {
         this.currentToken = currentToken;
@@ -92,7 +93,7 @@ public class GameLogic {
     /**
      * Mutator method that sets the non-current token.
      * 
-     * @param currentToken
+     * @param otherToken The other-player token (X or O)
      */
     public void setOtherToken(char otherToken) {
         this.otherToken = otherToken;
@@ -101,7 +102,7 @@ public class GameLogic {
     /**
      * Creates a new game board and populates it with the default value '_'.
      * 
-     * @return new 2D array of chars: board
+     * @return The new 2D array of chars.
      */
     public char[][] createBoard() {
         char[][] board = new char[ROWS][COLUMNS];
@@ -140,17 +141,12 @@ public class GameLogic {
     }
 
     /**
-     * InputType: COLUMN_INPUT
-     * Collect and return user column input.
-     * 
-     * @param type
-     * @return column num 
-     * 
-     * InputType: START_INPUT
-     * Collect player choice 'P' or 'C' to determine game mode.
-     * 
-     * @param type
-     * @return opponent num
+     * Handles user input based on the input type.
+     *
+     * @param type The input type (either COLUMN_INPUT} for column selection
+     * or {START_INPUT} for selecting game mode).
+     *
+     * @return The validated input value.
      */
     public int getInput(int type) {
         int input = -1;
@@ -194,11 +190,11 @@ public class GameLogic {
     }
 
     /**
-     * Finds the first avaliable row for the given column.
+     * Finds the first available row for the given column.
      * Returns -1 if no row is found.
      * 
-     * @param col
-     * @return row index or -1
+     * @param col The column index.
+     * @return The row index of the available position, or -1 if the column is full.
      */
     public int findRow(int col) {
         for (int i = 0; i < ROWS; i++) {
@@ -213,8 +209,9 @@ public class GameLogic {
     /**
      * Updates board location with currentToken.
      * 
-     * @param row
-     * @param col
+     * @param row The row index
+     * @param col The column index.
+     * @param token The player's token.
      */
     public void applyMove(int row, int col, char token) {
         board[row][col] = token;      
@@ -223,7 +220,8 @@ public class GameLogic {
 
     /**
      * Returns a read-only list containing valid moves.
-     * @return Iterable<Move>
+     *
+     * @return An iterable list of valid move positions.
      */
     public Iterable<Move> getValidMoves() {
         LinkedList<Move> validMoves = new LinkedList<>();
@@ -239,9 +237,6 @@ public class GameLogic {
         return validMoves;
     }
 
-
-    //dynamic checking methods for win types.
-
     /**
      * Testing method used to display selected matrix board.
      * 
@@ -253,11 +248,12 @@ public class GameLogic {
 
 
     /**
-     * Checks for horizontal win and updates HZ TokenCounter matrix.
+     * Calculates the consecutive tokens horizontally from a retrieved row.
      * 
-     * @param row
-     * @param col
-     * @return true if hz win found
+     * @param row The row index.
+     * @param col The column index.
+     * @param token The player's token.
+     * @return The count of consecutive tokens found in the horizontal direction.
      */
     public int getHorizontalCount(int row, int col, char token) {
         //grab row from HZ matrix
@@ -285,14 +281,15 @@ public class GameLogic {
         //check for win count
         tokenCounter.updateTokenInfo(row, col, Direction.HORIZONTAL, count, token);
         return count;
-    }   
+    }
 
     /**
-     * Checks for vertical win and updates VT TokenCounter matrix.
-     * 
-     * @param row
-     * @param col
-     * @return true if vt win found
+     * Calculates the consecutive tokens vertically from a retrieved column.
+     *
+     * @param row The row index.
+     * @param col The column index.
+     * @param token The player's token.
+     * @return The count of consecutive tokens found in the vertical direction.
      */
     public int getVerticalCount(int row, int col, char token) {
         //grab column from VT matrix
@@ -323,11 +320,12 @@ public class GameLogic {
     }
 
     /**
-     * Checks for D_LTR win and updates D_LTR TokenCounter matrix.
-     * 
-     * @param row
-     * @param col
-     * @return true if D_LTR win found
+     * Calculates the consecutive tokens from left-to-right.
+     *
+     * @param row The row index.
+     * @param col The column index.
+     * @param token The player's token.
+     * @return The count of consecutive tokens found from left-to-right.
      */
     public int getDiagonalLTRCount(int row, int col, char token) {
         TokenInfo[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_LTR);
@@ -356,11 +354,12 @@ public class GameLogic {
     }
 
     /**
-     * Checks for D_RTL win and updates D_RTL TokenCounter matrix.
-     * 
-     * @param row
-     * @param col
-     * @return true if D_RTL win found
+     * Calculates the consecutive tokens from right-to-left.
+     *
+     * @param row The row index.
+     * @param col The column index.
+     * @param token The player's token.
+     * @return The count of consecutive tokens found from right-to-left.
      */
     public int getDiagonalRTLCount(int row, int col, char token) {
         TokenInfo[][] matrix = tokenCounter.getTokenMatrix(Direction.DIAGONAL_RTL);
@@ -399,11 +398,13 @@ public class GameLogic {
     }
 
     /**
-     * 
-     * @param direction
-     * @param row
-     * @param col
-     * @return
+     * Checks if there is a winner in the specified direction.
+     *
+     * @param direction The direction to check.
+     * @param row The row index.
+     * @param col The column index.
+     * @param token The player's token.
+     * @return {@code true} if a winning sequence is found, otherwise {@code false}.
      */
     public boolean checkForWin(Direction direction, int row, int col, char token) {
         int count = -1;
@@ -423,11 +424,7 @@ public class GameLogic {
                 break;
         }
 
-        if (count >= 4) {
-            return true;
-        } 
-
-        return false;    
+        return count >= 4;
     }
 
     /**

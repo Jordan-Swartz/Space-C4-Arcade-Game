@@ -1,9 +1,11 @@
 package js_game.core;
 
 /**
- * TokenCounter contains the matrices for the analytics of the board states. 
- * Contains the private nested class 'TokenInfo'.
- * 
+ * TokenCounter contains the matrices for the analytics of the board states.
+ * It tracks token counts in different directions (horizontal, vertical, diagonal)
+ *
+ * Contains the nested class {@code TokenInfo} for managing individual token data.
+ *
  * @author Jordan Swartz
  * @version 1.0   
  */
@@ -24,34 +26,59 @@ public class TokenCounter {
         private int count;
         private char token;
 
+        /**
+         * Initializes a new TokenInfo object with default values.
+         */
         public TokenInfo() {
             this.count = 0;
             this.token = '_';
         }
 
+        /**
+         * Mutator method that sets the index-object's token.
+         */
         public void setToken(char token) {
             this.token = token;
         }
 
+        /**
+         * Mutator method that sets the index-object's count.
+         */
         public void setCount(int count) {
             this.count = count;
         }
 
+        /**
+         * Accessor method that returns the index-object's count.
+         *
+         * @return The index-object's count
+         */
         public int getCount() {
             return count;
         }
 
+        /**
+         * Accessor method that returns the index-object's token.
+         *
+         * @return The index-object's token
+         */
         public char getToken() {
             return token;
         }
 
     }
 
+    /**
+     * Matrices to store token counts for each direction
+     */
     private TokenInfo[][] horizontalCounts;
     private TokenInfo[][] verticalCounts;
     private TokenInfo[][] diagonalLTRCounts;
     private TokenInfo[][] diagonalRTLCounts;
 
+    /**
+     * Initializes a new TokenCounter with empty matrices.
+     */
     public TokenCounter() {
         horizontalCounts = new TokenInfo[ROWS][COLUMNS];
         verticalCounts = new TokenInfo[ROWS][COLUMNS];
@@ -69,27 +96,47 @@ public class TokenCounter {
         }
     }
 
+    /**
+     * Accessor method that returns the horizontal count.
+     *
+     * @return The horizontal count.
+     */
     public TokenInfo[][] getHorizontalCounts() {
         return horizontalCounts;
     }
 
+    /**
+     * Accessor method that returns the vertical count.
+     *
+     * @return The vertical count.
+     */
     public TokenInfo[][] getVerticalCounts() {
         return verticalCounts;
     }
 
+    /**
+     * Accessor method that returns the left-to-right diagonal count.
+     *
+     * @return The left-to-right diagonal count.
+     */
     public TokenInfo[][] getDiagonalLTRCounts() {
         return diagonalLTRCounts;
     }
 
+    /**
+     * Accessor method that returns the right-to-left diagonal count.
+     *
+     * @return The right-to-left diagonal count.
+     */
     public TokenInfo[][] getDiagonalRTLCounts() {
         return diagonalRTLCounts;
     }
 
     /**
-     * Returns selected matrix
+     * Retrieves the matrix based on the specified direction.
      * 
-     * @param direction
-     * @return TokenInfo[][] matrix
+     * @param direction The direction of the matrix to access.
+     * @return The corresponding matrix
      */
     public TokenInfo[][] getTokenMatrix(Direction direction) {
         switch (direction) {
@@ -109,8 +156,8 @@ public class TokenCounter {
     /**
      * Returns isolated row array from horizontal matrix.
      * 
-     * @param row
-     * @return TokenInfo[] row
+     * @param row The row index.
+     * @return An array containing the TokenInfo objects for the specified row.
      */
     public TokenInfo[] getHorizontalRow(int row) {
         TokenInfo[] rowData = new TokenInfo[COLUMNS];
@@ -126,8 +173,8 @@ public class TokenCounter {
      * Package-private method for unit testing.
      * Sets up the horizontal row with testing values.
      * 
-     * @param row
-     * @param rowData
+     * @param row The row index.
+     * @param rowData An array containing test TokenInfo values.
      */
     void setHorizontalRow(int row, TokenInfo[] rowData) {
         for (int i = 0; i < rowData.length; i++) {
@@ -139,8 +186,8 @@ public class TokenCounter {
     /**
      * Returns isolated column array from vertical matrix.
      * 
-     * @param col
-     * @return TokenInfo[] column
+     * @param col The column index.
+     * @return An array containing the TokenInfo objects for the specified column.
      */
     public TokenInfo[] getVerticalCol(int col) {
        TokenInfo[] colData = new TokenInfo[ROWS];
@@ -155,10 +202,10 @@ public class TokenCounter {
     /**
      * Private helper for updateTokenInfo that returns the correct TokenInfo Object.
      * 
-     * @param row
-     * @param col
-     * @param direction
-     * @return TokenInfo object
+     * @param row The row index.
+     * @param col The column index.
+     * @param direction The direction of the matrix to access.
+     * @return The TokenInfo object at the specified position.
      */
     private TokenInfo getTokenInfo(int row, int col, Direction direction) {
         switch (direction) {
@@ -178,11 +225,11 @@ public class TokenCounter {
     /**
      * Updates TokenInfo Values within the specified matrix.
      * 
-     * @param row
-     * @param col
-     * @param direction
-     * @param count
-     * @param token
+     * @param row The row index.
+     * @param col The column index.
+     * @param direction The direction of the matrix to update.
+     * @param count The count of consecutive tokens.
+     * @param token The token character ('X' or 'O').
      */
     public void updateTokenInfo(int row, int col, Direction direction, int count, char token) {
         TokenInfo tokenInfo = getTokenInfo(row, col, direction);
@@ -193,7 +240,7 @@ public class TokenCounter {
     /**
      * Displays selected TokenCounter matrix.
      * 
-     * @param direction
+     * @param direction The direction of the matrix to display.
      */
     public void displayMatrix(Direction direction) {
         TokenInfo[][] matrix;

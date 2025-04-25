@@ -180,7 +180,7 @@ public class TokenCounter {
      * @param row The row index.
      * @param rowData An array containing test TokenInfo values.
      */
-    void setHorizontalRow(int row, TokenInfo[] rowData) {
+    public void setHorizontalRow(int row, TokenInfo[] rowData) {
         for (int i = 0; i < rowData.length; i++) {
             horizontalCounts[row][i].setCount(rowData[i].getCount());
             horizontalCounts[row][i].setToken(rowData[i].getToken());

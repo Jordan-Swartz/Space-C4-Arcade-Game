@@ -1,9 +1,0 @@
-{
-    "java.project.sourcePaths": ["src"],
-    "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "/home/jordan/Downloads/openjfx-22_linux-x64_bin-sdk/javafx-sdk-22/lib/*.jar"
-    ],
-    "java.project.resourcePaths": ["src/resources"]
-}

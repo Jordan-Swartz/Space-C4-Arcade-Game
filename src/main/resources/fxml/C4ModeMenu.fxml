@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="rootVBox" prefHeight="704.0" prefWidth="896.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="js_game.controllers.GameModeController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New" />
+            <MenuItem mnemonicParsing="false" text="Open…" />
+            <Menu mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="Revert" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <SplitPane dividerPositions="0.2, 0.8" layoutX="218.0" layoutY="196.0" prefHeight="677.0" prefWidth="896.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <styleClass>
+                        <String fx:value="image-5-vertical" />
+                        <String fx:value="custom-image" />
+                     </styleClass></AnchorPane>
+                  <SplitPane dividerPositions="0.25, 0.75" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <styleClass>
+                              <String fx:value="image-5-mirror" />
+                              <String fx:value="custom-image" />
+                           </styleClass>
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
+                                 <children>
+                                    <Label fx:id="modeLabel3" alignment="CENTER" layoutX="226.0" layoutY="57.0" prefHeight="200.0" prefWidth="200.0" text="CONNECT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <styleClass>
+                                          <String fx:value="custom-label-1" />
+                                          <String fx:value="hover-effect" />
+                                       </styleClass>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane>
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="395.0" prefWidth="526.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane prefHeight="78.0" prefWidth="526.0">
+                                       <children>
+                                          <Label fx:id="modeLabel1" alignment="CENTER" contentDisplay="CENTER" layoutX="145.0" prefHeight="78.0" prefWidth="381.0" styleClass="custom-button-1" text="CONNECT FOUR GAME" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="78.0" prefWidth="526.0">
+                                       <children>
+                                          <Label fx:id="modeLabel2" alignment="CENTER" contentDisplay="CENTER" layoutY="92.0" prefHeight="78.0" prefWidth="526.0" styleClass="custom-button-1" text="SELECT A GAME MODE!" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="10.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="30.0">
+                                       <children>
+                                          <Button fx:id="guiButton" mnemonicParsing="false" onAction="#handleGUIClick" prefHeight="36.0" prefWidth="172.0" text="     GUI      ">
+                                             <styleClass>
+                                                <String fx:value="custom-button-1" />
+                                                <String fx:value="hover-effect" />
+                                             </styleClass></Button>
+                                          <Button fx:id="consoleButton" mnemonicParsing="false" onAction="#handleTextConsoleClick" prefHeight="36.0" prefWidth="170.0" text="Text Console">
+                                             <styleClass>
+                                                <String fx:value="custom-button-1" />
+                                                <String fx:value="hover-effect" />
+                                             </styleClass></Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                           <styleClass>
+                              <String fx:value="image-4" />
+                              <String fx:value="custom-image" />
+                           </styleClass>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <styleClass>
+                              <String fx:value="image-5" />
+                              <String fx:value="custom-image" />
+                           </styleClass>
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
+                                 <children>
+                                    <Label fx:id="modeLabel4" alignment="CENTER" layoutX="226.0" layoutY="57.0" text="FOUR" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <styleClass>
+                                          <String fx:value="custom-label-1" />
+                                          <String fx:value="hover-effect" />
+                                       </styleClass>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <styleClass>
+                        <String fx:value="image-5-vertical-mirror" />
+                        <String fx:value="custom-image" />
+                     </styleClass></AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </AnchorPane>
+  </children>
+</VBox>

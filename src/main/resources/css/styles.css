@@ -1,0 +1,116 @@
+/*
+ *Contains custom CSS styling for GUI components
+ */
+
+ .custom-button-1 {
+    -fx-background-color: linear-gradient(
+        to bottom, 
+        rgb(51, 26, 97), 
+        rgb(43, 172, 247), 
+        rgb(143, 209, 240), 
+        rgb(181, 222, 255), 
+        rgb(143, 209, 240),
+        rgb(43, 172, 247), 
+        rgb(51, 26, 97), 
+    );
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+ }
+
+ .custom-label-1 {
+    -fx-text-fill: linear-gradient(
+        to bottom, 
+        rgb(179, 219, 243), 
+        rgb(43, 172, 247), 
+        rgba(43, 172, 247, 0.788), 
+        orange,
+        purple,
+        rgb(51, 26, 97), 
+    );
+    -fx-effect: dropshadow(gaussian, black, 1, 1, 0, 0);
+    -fx-border-radius: 40px;
+    -fx-background-radius: 40px;
+ }
+
+ .image-1 {
+    -fx-background-image: url("/images/arcadeBG.png");
+ }
+
+ .image-2 {
+    -fx-background-image: url("/images/arcadeLogo.png");
+ }
+
+ .image-3 {
+    -fx-background-image: url("/images/grid_vertical.png");
+ }
+
+ .image-4 {
+    -fx-background-image: url("/images/flashBG1.png");
+ }
+
+ .image-5 {
+    -fx-background-image: url("/images/blue_space.png");
+ }
+
+ .image-5-vertical {
+    -fx-background-image: url("/images/blue_space_vertical.png");
+ }
+
+ .image-5-vertical-mirror {
+    -fx-background-image: url("/images/blue_space_vertical_mirror.png");
+ }
+
+ .image-5-mirror {
+    -fx-background-image: url("/images/blue_space_mirror.png");
+ }
+
+ .image-6 {
+    -fx-background-image: url("/images/purple_space.png");
+ }
+
+ .image-6 {
+    -fx-background-image: url("/images/black_space.png");
+ }
+
+ .image-7 {
+    -fx-background-image: url("/images/black_steel_vertical.png");
+ }
+
+ .custom-image {
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%; 
+ }
+
+ .custom-mirror {
+    -fx-scale-x: -1;
+ }
+
+ .hover-effect:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+ }
+
+ .split-pane .split-pane-divider {
+    -fx-background-color: #ff0000; /* Set the background color of all dividers */
+    -fx-border-color: rgb(43, 172, 247); /* Set the border color of all dividers */
+    -fx-border-width: 3px; /* Set the border width of all dividers */
+    -fx-padding: 2px; /* Set the padding around all dividers */
+}
+
+.bordered-section {
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+    -fx-background-color: #f0f0f0;
+}
+
+/* Add this to your CSS file */
+.vertical-text {
+    -fx-rotate: 90;
+    -fx-alignment: CENTER; /* Ensure the text is centered */
+    -fx-padding: 10; /* Adjust padding as needed */
+}

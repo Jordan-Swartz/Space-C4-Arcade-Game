@@ -1,0 +1,110 @@
+//plugins for code-quality, coverage, and application
+plugins {
+    id "com.github.spotbugs" version "5.0.13"       //static analysis for java
+    id "checkstyle"                                 //code style enforcement
+    id "org.openjfx.javafxplugin" version "0.0.13"  //JavaFX plugin
+}
+
+apply plugin: 'jacoco'                              //test coverage report
+apply plugin: 'application'
+
+//define repositories to fetch dependencies
+repositories {
+    mavenCentral()                                  //dependencies from maven
+    gradlePluginPortal()                            //dependencies from gradle
+}
+
+//define project dependencies
+dependencies {
+    //JUnit 5 dependencies for unit testing
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.0'
+
+    //JavaFX dependencies (MATCHING JDK 17)
+    implementation 'org.openjfx:javafx-controls:17'
+    implementation 'org.openjfx:javafx-fxml:17'
+    implementation 'org.openjfx:javafx-graphics:17'
+    implementation 'org.openjfx:javafx-base:17'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
+
+//configure JavaFX
+javafx {
+    version = "22"
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics']
+}
+
+//entry point for application
+application {
+    mainClass = 'js_game.ui.MainGUI'
+    applicationDefaultJvmArgs = [
+            "--module-path", "${System.getProperty('java.home')}/lib",
+            "--add-modules", "javafx.controls,javafx.fxml"
+    ]
+}
+
+
+//configure testing
+test {
+    useJUnitPlatform()                              //ensure JUnit 5 is used for testing
+    //exclude '**/remove.class'                     //exclude a test file if needed
+}
+
+//configure code coverage
+jacocoTestReport {
+    dependsOn test                                  //run tests before generating report
+}
+jacoco {
+    toolVersion = "0.8.8"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
+
+//apply checkstyle for code quality enforcement
+apply plugin: 'checkstyle'
+checkstyle {
+    // Keep checkstyle a little quieter
+    ignoreFailures = true
+    showViolations = false
+}
+
+tasks.withType(Checkstyle) {
+}
+checkstyle {
+    toolVersion = "8.8"
+}
+
+
+//spotbugs configuration
+spotbugs {
+    toolVersion = '4.8.4'
+    ignoreFailures = true
+    showProgress = true
+    effort = 'max'
+    reportLevel = 'low'
+}
+
+//generate HTML report instead of xml
+tasks.withType(com.github.spotbugs.snom.SpotBugsTask).configureEach {
+    reports {
+        html.required.set(true)
+        xml.required.set(false)
+    }
+}

@@ -78,6 +78,6 @@ A Java-based Connect Four game that supports multiple modes of play: GUI, consol
    - [Network Interfaces](https://www.baeldung.com/java-network-interfaces) - Client/Server Architecture
      
 ---
-![C4.png](resources/images/C4-title.png)
+![C4.png](https://github.com/Jordan-Swartz/Space-C4-Arcade-Game/blob/dev/src/main/resources/images/C4-title.png)
 ---
 

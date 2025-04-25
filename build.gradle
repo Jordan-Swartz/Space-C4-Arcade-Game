@@ -28,6 +28,7 @@ dependencies {
     implementation 'org.openjfx:javafx-base:17'
 }
 
+//source directory structure
 sourceSets {
     main {
         java {

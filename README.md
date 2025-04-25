@@ -65,7 +65,7 @@ A Java-based Connect Four game that supports multiple modes of play: GUI, consol
   
 ---
 
-## 6: 📚Resources Used:
+## 6: 📚 Resources Used:
 1. SceneBuilder
    - [SceneBuilder](https://gluonhq.com/products/scene-builder/) - GluonHQ
 2. JUnit Testing

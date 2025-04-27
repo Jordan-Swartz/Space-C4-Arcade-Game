@@ -20,7 +20,7 @@ A Java-based Connect Four game that supports multiple modes of play: GUI, consol
 6. Console Mode
    - Text-based game version for environments where GUI is not supported.
 7. Client-Server Architecture (in-progress)
-   - Multiplayer support via a dedicated server using sockets and JSON protocol (currently under development).
+   - Multiplayer support via a dedicated server using TCP sockets and JSON-based protocol (currently under development).
 8. Unit Testing
    - Implemented for function validation.
       
